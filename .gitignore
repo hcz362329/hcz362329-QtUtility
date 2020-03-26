@@ -1,7 +1,13 @@
 Win32
 x64
+QtUtility/Debug
+
 GeneratedFiles
 *.tlog
 *.obj
 *.pch
 *.log
+*.pdb
+*.db
+.vs/
+*.opendb
