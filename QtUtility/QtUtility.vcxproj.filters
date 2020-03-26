@@ -1,0 +1,883 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{c0f133d4-3fc6-4938-8cd0-b62017e45c88}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{9c294ccd-fdad-4a7c-828c-1899327a235c}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="winhttp">
+      <UniqueIdentifier>{c220e8a6-a8cf-464b-a67e-ce225fbbb5cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tree">
+      <UniqueIdentifier>{1e9b92b8-2cac-4c8e-afdb-89a3255bfc3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ListTableView">
+      <UniqueIdentifier>{ac817acd-0331-40ed-bc1a-cb61da511347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sql">
+      <UniqueIdentifier>{455c0bbc-010d-4393-bf22-068d112cf58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helper">
+      <UniqueIdentifier>{7a2a2b11-912a-4a5b-a92d-2fb8d252e1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Equipment">
+      <UniqueIdentifier>{c1f0b6c5-6cbd-4da7-81da-31914efc9d3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileDialog">
+      <UniqueIdentifier>{2539f656-0364-4563-91a0-e6f85902412a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Promote">
+      <UniqueIdentifier>{c2a3b65c-ff47-4111-9577-47fe69038b60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Excel">
+      <UniqueIdentifier>{52f15612-8a24-4d1f-a69e-509df0957124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{682acb62-804c-4745-b660-8600264dc456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageHandle">
+      <UniqueIdentifier>{eee46f81-c851-40b4-a896-eec92c13f76b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WillStar">
+      <UniqueIdentifier>{fd1d65b2-84c0-45e6-ad4a-a5959ad44e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QtHttp">
+      <UniqueIdentifier>{45d89043-0821-46e8-ab22-088e581521f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_myclass.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_music.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_music.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="musicmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_musicmanager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_musicmanager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="music.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Font.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Font.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TopHintDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TopHintDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="TopHintDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winhttp\http_tunnel.cpp">
+      <Filter>winhttp</Filter>
+    </ClCompile>
+    <ClCompile Include="winhttp\MD5.cpp">
+      <Filter>winhttp</Filter>
+    </ClCompile>
+    <ClCompile Include="winhttp\service_tunnel.cpp">
+      <Filter>winhttp</Filter>
+    </ClCompile>
+    <ClCompile Include="winhttp\utility.cpp">
+      <Filter>winhttp</Filter>
+    </ClCompile>
+    <ClCompile Include="WinHttpWidget.cpp">
+      <Filter>winhttp</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_WinHttpWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_WinHttpWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CTreeModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CTreeModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="CTreeModel.cpp">
+      <Filter>Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeItem.cpp">
+      <Filter>Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="CTreeView.cpp">
+      <Filter>Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CTreeView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CTreeView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CTreeDelegate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CTreeDelegate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeWidget.cpp">
+      <Filter>Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TreeWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TreeWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="HyTableDelegate.cpp">
+      <Filter>ListTableView</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HyTableDelegate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HyTableDelegate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="HyTableModel.cpp">
+      <Filter>ListTableView</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HyTableModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HyTableModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="HyTableView.cpp">
+      <Filter>ListTableView</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HyTableView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HyTableView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="JxDelegate.cpp">
+      <Filter>ListTableView</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_JxDelegate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_JxDelegate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="JxListView.cpp">
+      <Filter>ListTableView</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_JxListView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_JxListView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="JxModel.cpp">
+      <Filter>ListTableView</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_JxModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_JxModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="CTreeDelegate.cpp">
+      <Filter>Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="SqlDatabase.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\EquipmentBase.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EquipmentBase.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EquipmentBase.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\EquipmentEffectModule.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EquipmentEffectModule.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EquipmentEffectModule.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\EquipmentSchemeModule.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EquipmentSchemeModule.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EquipmentSchemeModule.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\EquipmentSetModule.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EquipmentSetModule.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EquipmentSetModule.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\EquipmentTip.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EquipmentTip.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EquipmentTip.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\EquipSchemeBtn.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EquipSchemeBtn.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EquipSchemeBtn.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\QxEquipment.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QxEquipment.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QxEquipment.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\QxEquipmentDB.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\QxEquipmentTableDelegate.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QxEquipmentTableDelegate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QxEquipmentTableDelegate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\QxEquipmentTableModel.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QxEquipmentTableModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QxEquipmentTableModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\QxEquipmentTableView.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QxEquipmentTableView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QxEquipmentTableView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\QxRadioLabel.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QxRadioLabel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QxRadioLabel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\RecommandModule.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RecommandModule.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RecommandModule.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\RecommandSchemeItem.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RecommandSchemeItem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RecommandSchemeItem.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\UnLockTip.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UnLockTip.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UnLockTip.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment\stdafx.cpp">
+      <Filter>Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="Pixmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Pixmap.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Pixmap.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Animation.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Animation.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDialog.cpp">
+      <Filter>FileDialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FileDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FileDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="PromoteInfo.cpp">
+      <Filter>Promote</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PromoteInfo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PromoteInfo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseWidget.cpp">
+      <Filter>Promote</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BaseWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BaseWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="PromoteTest.cpp">
+      <Filter>Promote</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PromoteTest.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PromoteTest.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ExcelOperate.cpp">
+      <Filter>Excel</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ExcelOperate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ExcelOperate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateLabel.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Rotate.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Rotate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Rotate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_RotateLabel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_RotateLabel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="PngList.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PngList.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PngList.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="OpacityWidget.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OpacityWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OpacityWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageHandle.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ImageHandle.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ImageHandle.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Button.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Button.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BannerWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BannerWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BannerWidget.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="qpainterex.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="imageprocess.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_imageprocess.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_imageprocess.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="widget_zhaoyun.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_widget_zhaoyun.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_widget_zhaoyun.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="UnNormalShape.cpp">
+      <Filter>ImageHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UnNormalShape.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UnNormalShape.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationResize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AnimationResize.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AnimationResize.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="HDTrumpet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HDTrumpet.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HDTrumpet.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="HdCharge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_HdCharge.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_HdCharge.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="QLabelPainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QLabelPainter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QLabelPainter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="WillStarInfo.cpp">
+      <Filter>WillStar</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_WillStarInfo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_WillStarInfo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="common_msg_widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_common_msg_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_common_msg_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_util_res.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rounded_widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_rounded_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_rounded_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_time_set.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_time_set.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="time_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_user_card.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_user_card.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="user_card.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="myclass.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="myclass.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="music.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="musicmanager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Font.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TopHintDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WinHttpWidget.h">
+      <Filter>winhttp</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CTreeModel.h">
+      <Filter>Tree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CTreeView.h">
+      <Filter>Tree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CTreeDelegate.h">
+      <Filter>Tree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TreeWidget.h">
+      <Filter>Tree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HyTableDelegate.h">
+      <Filter>ListTableView</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HyTableModel.h">
+      <Filter>ListTableView</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HyTableView.h">
+      <Filter>ListTableView</Filter>
+    </CustomBuild>
+    <CustomBuild Include="JxDelegate.h">
+      <Filter>ListTableView</Filter>
+    </CustomBuild>
+    <CustomBuild Include="JxListView.h">
+      <Filter>ListTableView</Filter>
+    </CustomBuild>
+    <CustomBuild Include="JxModel.h">
+      <Filter>ListTableView</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\EquipmentBase.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\EquipmentEffectModule.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\EquipmentSchemeModule.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\EquipmentSetModule.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\EquipmentTip.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\EquipSchemeBtn.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\QxEquipment.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\QxEquipmentTableDelegate.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\QxEquipmentTableModel.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\QxEquipmentTableView.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\QxRadioLabel.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\RecommandModule.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\RecommandSchemeItem.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Equipment\UnLockTip.h">
+      <Filter>Equipment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Pixmap.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FileDialog.h">
+      <Filter>FileDialog</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PromoteInfo.h">
+      <Filter>Promote</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseWidget.h">
+      <Filter>Promote</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PromoteTest.h">
+      <Filter>Promote</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ExcelOperate.h">
+      <Filter>Excel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Rotate.h">
+      <Filter>Animation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="RotateLabel.h">
+      <Filter>Animation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="PngList.h">
+      <Filter>Animation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="OpacityWidget.h">
+      <Filter>Animation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ImageHandle.h">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Button.h">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BannerWidget.h">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="imageprocess.h">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="imageprocess.ui">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="widget_zhaoyun.h">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="UnNormalShape.h">
+      <Filter>ImageHandle</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AnimationResize.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="animation.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HDTrumpet.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="HdCharge.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QLabelPainter.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WillStarInfo.h">
+      <Filter>WillStar</Filter>
+    </CustomBuild>
+    <CustomBuild Include="common_msg_widget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="util_res.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="rounded_widget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="time_set.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TimeSet.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="user_card.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="user_card.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_myclass.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QtFunction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winhttp\http_tunnel.h">
+      <Filter>winhttp</Filter>
+    </ClInclude>
+    <ClInclude Include="winhttp\MD5.h">
+      <Filter>winhttp</Filter>
+    </ClInclude>
+    <ClInclude Include="winhttp\service_tunnel.h">
+      <Filter>winhttp</Filter>
+    </ClInclude>
+    <ClInclude Include="winhttp\utility.h">
+      <Filter>winhttp</Filter>
+    </ClInclude>
+    <ClInclude Include="http_define.h">
+      <Filter>winhttp</Filter>
+    </ClInclude>
+    <ClInclude Include="WinHttpHelper.hpp">
+      <Filter>winhttp</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeItem.h">
+      <Filter>Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHelper.hpp">
+      <Filter>Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="HyTableDef.h">
+      <Filter>ListTableView</Filter>
+    </ClInclude>
+    <ClInclude Include="SqlDatabase.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper\QtHelper.hpp">
+      <Filter>Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment\BaseActions.h">
+      <Filter>Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment\BaseDataDef.h">
+      <Filter>Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment\QxEquipmentDB.h">
+      <Filter>Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment\stdafx.h">
+      <Filter>Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="RankHelp.hpp">
+      <Filter>Promote</Filter>
+    </ClInclude>
+    <ClInclude Include="qpainterex.h">
+      <Filter>ImageHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_imageprocess.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common_define.h">
+      <Filter>ImageHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_animation.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_TimeSet.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_user_card.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="QtUtility.rc" />
+  </ItemGroup>
+</Project>

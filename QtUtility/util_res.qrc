@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>Resources/images/close_0.png</file>
+        <file>Resources/images/close_1.png</file>
+        <file>Resources/images/lucky_user_bg.png</file>
+        <file>Resources/images/1.png</file>
+        <file>Resources/images/car.png</file>
+        <file>Resources/images/biz_live_fans_level_icon_1.png</file>
+        <file>Resources/images/temp.png</file>
+    </qresource>
+</RCC>
