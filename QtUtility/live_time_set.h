@@ -1,14 +1,14 @@
 ﻿#pragma once
 #ifndef LIVETIMESET_HPP
 #define LIVETIMESET_HPP
-#include <QWidget>
+#include <QMap>
 #include <QLabel>
-#include <QPushButton>
+#include <QWidget>
 #include <QLineEdit>
+#include <QComboBox>
+#include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QMap>
-#include "LiveTimeView.h"
 enum ELiveSetBtn
 {
 	eLiveSetBtnClose	= 1,
@@ -62,8 +62,8 @@ public:
 public slots:
 	void OnBtnClicked(ELiveSetBtn eBtn);
 private:
-	View*	pViewStart;
-	View*   pViewStop;
+	QComboBox* pStartCombo;
+	QComboBox* pStopCombo;
 };
 
 class LiveTimeSet : public RoundedWidget {

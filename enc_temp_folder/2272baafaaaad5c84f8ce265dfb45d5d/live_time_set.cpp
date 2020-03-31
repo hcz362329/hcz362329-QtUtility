@@ -523,3 +523,108 @@ void TimeSpecify::OnBtnClicked(ELiveSetBtn eBtn)
 	}
 	qDebug() << "eBtn:" << eBtn;
 }
+
+
+/*
+
+QLabel* pStartTime = new QLabel(this);
+QLabel* pSeprate		= new QLabel(this);
+QLabel* pStopTime = new QLabel(this);
+pStartTimeDisplay->setAlignment(Qt::AlignCenter);
+pStopTimeDisplay->setAlignment(Qt::AlignCenter);
+pStartTime->setAlignment(Qt::AlignCenter);
+pStopTime->setAlignment(Qt::AlignCenter);
+pStartTime->setText("00:00");
+pStopTime->setText("00:00");
+
+pStartTimeDisplay->setFixedSize(154, 22);
+pStopTimeDisplay->setFixedSize(154, 22);
+pStartTime->setFixedSize(154, 36);
+pSeprate->setFixedSize(12,1);
+pStopTime->setFixedSize(154, 36);
+
+pStartTimeDisplay->setStyleSheet(QString("font-size:16px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgb(167,167,167);line-height:22px;"));
+pStopTimeDisplay->setStyleSheet(QString(";font-size:16px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgb(167,167,167);line-height:22px;"));
+pStartTime->setStyleSheet(QString("font-size:16px;font-family:PingFangSC-Regular,PingFang SC;font-weight:600;color:rgb(51,51,51);line-height:22px;"));
+pSeprate->setStyleSheet(QString("background-color:#E0E0E0"));
+pStopTime->setStyleSheet(QString("font-size:16px;font-family:PingFangSC-Regular,PingFang SC;font-weight:600;color:rgb(51,51,51);line-height:22px;"));
+QHBoxLayout* pLayoutLine2 = new QHBoxLayout;
+pLayoutLine2->setContentsMargins(0, 0, 0, 0);
+pLayoutLine2->addSpacing(20);
+pLayoutLine2->addWidget(pStartTimeDisplay);
+pLayoutLine2->addSpacing(12);
+pLayoutLine2->addWidget(pStopTimeDisplay);
+pLayoutLine2->addSpacing(20);
+pMainLayout->addSpacing(10);
+pMainLayout->addLayout(pLayoutLine2);
+
+QHBoxLayout* pLayoutLine3 = new QHBoxLayout;
+pLayoutLine3->setContentsMargins(0, 0, 0, 0);
+pLayoutLine3->addSpacing(20);
+pLayoutLine3->addWidget(pStartTime);
+pLayoutLine3->addWidget(pSeprate);
+pLayoutLine3->addWidget(pStopTime);
+pLayoutLine3->addSpacing(20);
+pMainLayout->addSpacing(5);
+pMainLayout->addLayout(pLayoutLine3);
+
+pViewStart = new View(this);
+pViewStart->setFixedSize(160, 90);
+QVector<int> vecHour1;
+vecHour1 << 0 << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 10 << 11 << 12 << 13 << 14 << 15 << 16 << 17 << 18 << 19 << 20 << 21 << 22 << 23;
+pViewStart->updateAll(vecHour1);
+pViewStart->SetMaxStep(vecHour1.size() - 3);
+
+
+pViewStop = new View(this);
+pViewStop->setFixedSize(160, 90);
+QVector<int> vecHour;
+vecHour << 0 << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 10 << 11 << 12 << 13 << 14 << 15 << 16 << 17 << 18 << 19 << 20 << 21 << 22 << 23 << 24 << 25 << 26 << 27 << 28 << 29 << 30 << 31 << 32 << 33 << 34 << 35 << 36 << 37 << 38 << 39 << 40 << 41 << 42 << 43 << 44 << 45 << 46 << 47 << 48 << 49 << 50 << 51 << 52 << 53 << 54 << 55 << 56 << 57 << 58 << 59;
+pViewStop->updateAll(vecHour);
+pViewStop->SetMaxStep(vecHour.size() - 3);
+
+auto slot_view1 = [=](const int & value) {
+pStartTime->setText(QString::number(value));
+};
+auto slot_view2 = [=](const int & value) {
+pStopTime->setText(QString::number(value));
+};
+QObject::connect(pViewStart, &View::sigSelect, slot_view1);
+QObject::connect(pViewStop, &View::sigSelect, slot_view2);
+
+QHBoxLayout* pLayoutView = new QHBoxLayout;
+pLayoutView->setContentsMargins(0, 0, 0, 0);
+pLayoutView->addSpacing(20);
+pLayoutView->addWidget(pViewStart);
+pLayoutView->addSpacing(0);
+pLayoutView->addWidget(pViewStop);
+pLayoutView->addSpacing(20);
+pMainLayout->addSpacing(1);
+pMainLayout->addLayout(pLayoutView);
+
+QLabel* pSeprateLine2 = new QLabel(this);
+pSeprateLine2->setStyleSheet("background:#E0E0E0;");
+pSeprateLine2->setGeometry(0,167,360,1);
+
+pMainLayout->addSpacing(20);
+
+QPushButton* pBtnCancle = new QPushButton(QStringLiteral("取消"),this);
+pBtnCancle->setStyleSheet("QPushButton{border:none;background-color:rgba(255,255,255,0);font-size:17px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgba(92,92,92);line-height:24px;}QPushButton::hover{background-color:rgba(255,255,255,60);}");
+pBtnCancle->setFixedSize(179, 40);
+QLabel* pSeprate3 = new QLabel(this);
+pSeprate3->setGeometry(180, 167, 1, 40);
+pSeprate3->setStyleSheet("background:#E0E0E0;");
+QPushButton* pBtnOk = new QPushButton(QStringLiteral("确定"), this);
+pBtnOk->setStyleSheet("QPushButton{border:none;background-color:rgba(255,255,255,0);font-size:17px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgba(255,28,117);line-height:24px;}QPushButton::hover{border:none;background-color:rgba(255,255,255,255);font-size:17px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgba(255,28,117);line-height:24px;}");
+pBtnOk->setFixedSize(179, 40);
+pMainLayout->addSpacing(0);
+QHBoxLayout* pLayoutBtn = new QHBoxLayout;
+pLayoutBtn->setContentsMargins(0, 0, 0, 0);
+pLayoutBtn->addWidget(pBtnCancle);
+pLayoutBtn->addSpacing(2);
+pLayoutBtn->addWidget(pBtnOk);
+pMainLayout->addLayout(pLayoutBtn);
+pMainLayout->addStretch();
+setLayout(pMainLayout);
+
+*/
