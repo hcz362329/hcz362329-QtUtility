@@ -75,6 +75,66 @@ public:
 		return pixmap;
 	}
 
+	static QPixmap GetPixmap1(int w, int h)
+	{
+		QPixmap pixmap = QPixmap(60, 66);
+		pixmap.fill(Qt::transparent);
+		QPainter painter;
+		painter.begin(&pixmap);
+		painter.setRenderHint(QPainter::Antialiasing, true);
+
+		QColor color_ = QColor(255, 255, 255, 0.05 * 255);
+		QColor  color__ = QColor(21, 21, 21, 255);
+
+		painter.setBrush(color__);
+		painter.setPen(color__);
+		painter.drawRect(QRect(0, 0, 60, 22));
+
+		painter.setBrush(color_);
+		painter.setPen(color_);
+		painter.drawRect(QRect(0, 22, 60, 22));
+
+		painter.setBrush(color__);
+		painter.setPen(color__);
+		painter.drawRect(QRect(0, 44, 60, 22));
+
+		painter.end();
+		pixmap.save("./livetime_bg.png");
+		return pixmap;
+	}
+
+	static QPixmap GetPixmap2(int w, int h)
+	{
+		QPixmap pixmap = QPixmap(160, 30);
+		pixmap.fill(Qt::transparent);
+		QPainter painter;
+		painter.begin(&pixmap);
+		painter.setRenderHint(QPainter::Antialiasing, true);
+
+		QColor color1 = QColor(21,21,21);
+
+		painter.setBrush(color1);
+		painter.setPen(color1);
+		painter.drawRect(QRect(0, 0, 160, 30));
+		painter.end();
+		pixmap.save("./livetime_bg_0.png");
+
+		QPixmap pixmap2 = QPixmap(160, 30);
+		pixmap2.fill(Qt::transparent);
+		QPainter painter2;
+		painter2.begin(&pixmap2);
+		painter2.setRenderHint(QPainter::Antialiasing, true);
+
+		QColor  color2 = QColor(65, 66, 70);
+
+		painter2.setBrush(color2);
+		painter2.setPen(color2);
+		painter2.drawRect(QRect(0, 0, 160, 30));
+		painter2.end();
+		pixmap2.save("./livetime_bg_1.png");
+		return pixmap;
+	}
+
 	static QPixmap GetRoundPixmapByColor(int radius,QColor color)
 	{
 		QPixmap pixmap = QPixmap(radius*2, radius*2);

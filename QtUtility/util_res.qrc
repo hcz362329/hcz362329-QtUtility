@@ -7,5 +7,24 @@
         <file>Resources/images/car.png</file>
         <file>Resources/images/biz_live_fans_level_icon_1.png</file>
         <file>Resources/images/temp.png</file>
+        <file>Resources/images/live_tip.png</file>
+        <file>Resources/images/tip_live_set.png</file>
+        <file>Resources/images/cancle_0.png</file>
+        <file>Resources/images/cancle_1.png</file>
+        <file>Resources/images/ensure_live_1.png</file>
+        <file>Resources/images/not_live_0.png</file>
+        <file>Resources/images/ok_0.png</file>
+        <file>Resources/images/ok_1.png</file>
+        <file>Resources/images/ensure_live_0.png</file>
+        <file>Resources/images/not_live_1.png</file>
+        <file>Resources/images/live_item_edit.png</file>
+        <file>Resources/images/live_item_normal.png</file>
+        <file>Resources/images/item_close.png</file>
+        <file>Resources/images/livetime_0.png</file>
+        <file>Resources/images/livetime_1.png</file>
+        <file>Resources/images/add_tip.png</file>
+        <file>Resources/images/clear.png</file>
+        <file>Resources/images/edit.png</file>
+        <file>Resources/images/livetime_bg_160.png</file>
     </qresource>
 </RCC>

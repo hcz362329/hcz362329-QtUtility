@@ -30,6 +30,9 @@
 #include "rounded_widget.h"
 #include "time_set.h"
 #include "user_card.h"
+#include "BaseMoveDlg.h"
+#include "live_time_set.h"
+#include "LiveTimeView.h"
 //#include<QtPlugin>
 //Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
 //Q_IMPORT_PLUGIN(QICOPlugin)
@@ -50,15 +53,90 @@ void TestRoundedWidget();
 void TestCommonMsgWidget();
 void TestTimeSet();
 void TestUserCard();
+void TestMoveDlg();
+void TestLiveSet();
+void TestView();
+void CreatePixmap();
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	a.setQuitOnLastWindowClosed(true);
 	QDir::setCurrent(QApplication::instance()->applicationDirPath());
-	TestUserCard();
+	TestLiveSet();
+	//TestView();
+	CreatePixmap();
 	return a.exec();
 	
+}
+
+
+void CreatePixmap()
+{
+	QtHelper::GetPixmap1(60,22);
+	QtHelper::GetPixmap2(320, 150);
+}
+
+void TestView()
+{
+	QWidget* pWidget = new QWidget;
+	pWidget->setStyleSheet("background:rgb(35,36,41);");
+	pWidget->setGeometry(300, 300, 600, 800);
+	View* view1 = new View(pWidget);
+	view1->setGeometry(40, 100, 60, 67);
+	QVector<int> vecHour1;
+	vecHour1 << 0 << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 10 << 11 << 12 << 13 << 14 << 15 << 16 << 17 << 18 << 19 << 20 << 21 << 22 << 23;
+	view1->updateAll(vecHour1);
+	view1->SetMaxStep(vecHour1.size() - 3);
+	
+
+	View* view = new View(pWidget);
+	view->setGeometry(100,100,60,66);
+	QVector<int> vecHour;
+	vecHour << 0 << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 10 << 11 << 12 << 13 << 14 << 15 << 16 << 17 << 18 << 19 << 20 << 21 << 22 << 23 << 24 << 25 << 26 << 27 << 28 << 29 << 30 << 31 << 32 << 33 << 34 << 35 << 36 << 37 << 38 << 39 << 40<< 41 << 42 << 43 << 44 << 45 << 46 << 47 << 48 << 49 << 50<< 51 << 52 << 53 << 54 << 55 << 56 << 57 << 58 << 59 ;
+	view->updateAll(vecHour);
+	view->SetMaxStep(vecHour.size()-3);
+	QLabel* pLabel = new QLabel(pWidget);
+	pLabel->setGeometry(200, 200, 100, 20);
+	pLabel->setStyleSheet("color:white");
+	QLabel* pLabel2 = new QLabel(pWidget);
+	pLabel2->setGeometry(200, 250, 100, 20);
+	pLabel2->setStyleSheet("color:white");
+
+	pWidget->show();
+	
+
+	auto slot_view1 = [=](const int & value) {
+		pLabel->setText(QString::number(value));
+	};
+	auto slot_view2 = [=](const int & value) {
+		pLabel2->setText(QString::number(value));
+	};
+	QObject::connect(view1,&View::sigSelect, slot_view1);
+	QObject::connect(view, &View::sigSelect, slot_view2);
+}
+
+void TestLiveSet()
+{
+	LiveTimeSet* set = new LiveTimeSet;
+	set->SetRoundedColor(533, 346, 7, 35, 36, 41);
+	set->setFixedSize(533, 346);
+	STLiveTime stLiveTime;
+	stLiveTime.startTime = "08::00";
+	stLiveTime.endTime = "18:00";
+	set->AddLiveStartEndTime(stLiveTime);
+	set->AddLiveStartEndTime(stLiveTime);
+	set->AddLiveStartEndTime(stLiveTime);
+	set->show();
+}
+
+void TestMoveDlg()
+{
+	BaseMoveDlg* pMove = new BaseMoveDlg;
+	pMove->setStyleSheet("background:black;");
+	pMove->setGeometry(300, 200, 600, 600);
+	
+	pMove->show();
 }
 
 void TestUserCard()

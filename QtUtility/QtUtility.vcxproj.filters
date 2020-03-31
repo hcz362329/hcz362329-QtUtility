@@ -72,6 +72,9 @@
     <Filter Include="QtHttp">
       <UniqueIdentifier>{45d89043-0821-46e8-ab22-088e581521f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Simple">
+      <UniqueIdentifier>{ee185805-865e-4aba-a8b5-1c2193cac5d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -605,6 +608,42 @@
     <ClCompile Include="user_card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseMoveDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BaseMoveDlg.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BaseMoveDlg.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="move_widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_move_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_move_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_live_time_set.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_live_time_set.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="LiveTimeView.cpp">
+      <Filter>Simple</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LiveTimeView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LiveTimeView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="live_time_set.cpp">
+      <Filter>Simple</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="myclass.ui">
@@ -793,6 +832,18 @@
     <CustomBuild Include="user_card.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="BaseMoveDlg.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="move_widget.hpp">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="LiveTimeView.h">
+      <Filter>Simple</Filter>
+    </CustomBuild>
+    <CustomBuild Include="live_time_set.h">
+      <Filter>Simple</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_myclass.h">
@@ -875,6 +926,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_user_card.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qss.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

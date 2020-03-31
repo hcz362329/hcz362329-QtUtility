@@ -3,22 +3,22 @@
 #include <QDebug>
 #include <QBitmap>
 #include<QPainter>
-#include <QCoreApplication>
-CommonMsgWidget::CommonMsgWidget(QString strText,QWidget* parent )
+
+CommonMsgWidget::CommonMsgWidget(QString strText, EMsgType eType, QWidget* parent)
 	: QDialog(parent)
 	, pLabeText(nullptr)
 	, pBtnOk(nullptr)
 	, pBtnClose(nullptr)
+	, pBtnCancle(nullptr)
 {
-	setWindowFlags(Qt::FramelessWindowHint);
+	setWindowFlags(Qt::Tool | windowFlags());
 	QHBoxLayout *hlayout = new QHBoxLayout;
 	hlayout->addStretch();
 	pBtnClose = new QPushButton(this);
-	pBtnClose->setFixedSize(28,28);
+	pBtnClose->setFixedSize(28, 28);
 	QString strClose = strBtnStyle.arg(":/res/Resources/images/close_0.png").arg(":/res/Resources/images/close_1.png").arg(":/res/Resources/images/close_1.png");
 	pBtnClose->setStyleSheet(strClose);
 	hlayout->addWidget(pBtnClose);
-	hlayout->addSpacing(2);
 
 	QVBoxLayout* vlayout = new QVBoxLayout;
 	vlayout->addSpacing(2);
@@ -30,7 +30,7 @@ CommonMsgWidget::CommonMsgWidget(QString strText,QWidget* parent )
 	pLabeText->setAlignment(Qt::AlignCenter);
 	pLabeText->setFixedWidth(200);
 	pLabeText->setWordWrap(true);
-	pLabeText->setStyleSheet("font-size:16px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgb(92,92,92);line-height:18px;");
+	pLabeText->setStyleSheet("background:rgba(255,255,255,0);font-size:16px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgb(92,92,92);line-height:18px;");
 	pLabeText->setText(strText);
 	pLabeText->adjustSize();
 	hlayout2->addStretch();
@@ -40,23 +40,49 @@ CommonMsgWidget::CommonMsgWidget(QString strText,QWidget* parent )
 	vlayout->addLayout(hlayout2);
 	vlayout->addSpacing(10);
 
-	pBtnOk = new QPushButton(this);
-	pBtnOk->setFixedSize(248,40);
-	pBtnOk->setStyleSheet("QPushButton{width:248px;height:40px;color:white;background:rgba(255,60,112,255);border-radius:20px;}QPushButton::hover{width:248px;height:40px;background:rgba(255,18,112,255);border-radius:20px;}QPushButton::pressed{width:248px;height:40px;background:rgba(255,18,112,255);border-radius:20px;}");
-	pBtnOk->setText(QStringLiteral("我知道了"));
-	
-	QHBoxLayout *hlayout3 = new QHBoxLayout;
+	auto ok_slot = [this]() {this->accept(); };
+	auto close_slot = [this]() {this->reject(); };
 
-	hlayout3->addStretch();
-	hlayout3->addWidget(pBtnOk);
-	hlayout3->addStretch();
+	if (eType==eMsgKnow)
+	{
+		pBtnOk = new QPushButton(this);
+		pBtnOk->setFixedSize(248, 40);
+		pBtnOk->setStyleSheet("QPushButton{width:248px;height:40px;color:white;background:rgba(255,60,112,255);border-radius:20px;}QPushButton::hover{width:248px;height:40px;background:rgba(255,18,112,255);border-radius:20px;}QPushButton::pressed{width:248px;height:40px;background:rgba(255,18,112,255);border-radius:20px;}");
+		pBtnOk->setText(QStringLiteral("我知道了"));
+		
+		connect(pBtnOk, &QPushButton::clicked, ok_slot);
+		QHBoxLayout *hlayout3 = new QHBoxLayout;
+		hlayout3->addStretch();
+		hlayout3->addWidget(pBtnOk);
+		hlayout3->addStretch();
+		vlayout->addLayout(hlayout3);
+	}
+	else if (eType == eMsgCancleOk)
+	{
+		QString strOk = strBtnStyle.arg(":/res/Resources/images/ok_0.png").arg(":/res/Resources/images/ok_1.png").arg(":/res/Resources/images/ok_1.png");
+		QString strCancle = strBtnStyle.arg(":/res/Resources/images/cancle_0.png").arg(":/res/Resources/images/cancle_1.png").arg(":/res/Resources/images/cancle_1.png");
+		pBtnOk = new QPushButton(this);
+		pBtnOk->setFixedSize(116, 42);
+		pBtnOk->setStyleSheet(strOk);
+		pBtnCancle = new QPushButton(this);
+		pBtnCancle->setFixedSize(116, 42);
+		pBtnCancle->setStyleSheet(strCancle);
 
-	vlayout->addLayout(hlayout3);
+		connect(pBtnOk, &QPushButton::clicked, ok_slot);
+		connect(pBtnCancle, &QPushButton::clicked, close_slot);
+
+		QHBoxLayout *hlayout3 = new QHBoxLayout;
+		hlayout3->addSpacing(24);
+		hlayout3->addWidget(pBtnCancle);
+		hlayout3->addSpacing(16);
+		hlayout3->addWidget(pBtnOk);
+		hlayout3->addSpacing(24);
+		vlayout->addLayout(hlayout3);
+	}
+
+	connect(pBtnClose, &QPushButton::clicked, close_slot);
 	setLayout(vlayout);
-	auto close_slot{ [this]() {qDebug() << "reject";  reject(); } };
-	auto know_slot{ [this]() {qDebug() << "accept";   accept(); } };
-	connect(pBtnClose,&QPushButton::clicked, close_slot);
-	connect(pBtnOk, &QPushButton::clicked, know_slot);
+	
 	CreateBg();
 }
 
@@ -66,14 +92,14 @@ CommonMsgWidget::~CommonMsgWidget()
 
 }
 
-int CommonMsgWidget::information(QWidget* parent, QString strText)
+int CommonMsgWidget::information(QWidget* parent, QString strText, EMsgType eType)
 {
-	CommonMsgWidget widget(strText,parent);
-	if (parent != nullptr)
+	CommonMsgWidget widget(strText, eType, parent);
+	/*if (parent != nullptr)
 	{
-		widget.move(parent->mapToGlobal(QPoint((parent->width() - widget.width()) / 2,
-			(parent->height() - widget.height()) / 2)));
-	}
+	widget.move(parent->mapToGlobal(QPoint((parent->width() - widget.width()) / 2,
+	(parent->height() - widget.height()) / 2)));
+	}*/
 	return widget.exec();
 }
 
@@ -90,7 +116,7 @@ void CommonMsgWidget::CreateBg()
 		painter.begin(&pixmap);
 		painter.setRenderHint(QPainter::Antialiasing, true);
 		painter.setPen(Qt::NoPen);
-		painter.setBrush(QColor(255, 0, 0, 255));
+		painter.setBrush(QColor(255, 255, 255, 255));
 		painter.drawRoundedRect(QRect(0, 0, w, h), 6, 6);
 
 		painter.end();
