@@ -200,9 +200,35 @@ void LiveTimeSet::OnItemEditSot(const int& index)
 	{
 		pTimeSpecify = new TimeSpecify(this);
 		pTimeSpecify->setGeometry(87,59,360,208);
+		connect(pTimeSpecify, SIGNAL(sigLiveSet(const int&)), this, SLOT(OnLiveSetSlot(const int &)));
 	}
+	pTimeSpecify->SetLiveItem(index);
 	pTimeSpecify->show();
 	pTimeSpecify->raise();
+}
+
+void LiveTimeSet::OnLiveSetSlot(const int & index)
+{
+	QMap<int, LiveTimeItem*>::iterator iter = mapIndex2Item.find(index);
+	if (iter != mapIndex2Item.end())
+	{
+		LiveTimeItem* pItem = iter.value();
+	}
+}
+
+void LiveTimeSet::OnItemDeleteSot(const int& index)
+{
+	QMap<int, LiveTimeItem*>::iterator iter = mapIndex2Item.find(index);
+	if (iter != mapIndex2Item.end() )
+	{
+		LiveTimeItem* pItem = iter.value();
+		mapIndex2Item.remove(nEditItem);
+		pLiveItemsVLayout->removeWidget(pItem);
+		disconnect(pItem, SIGNAL(sigEdit(const int&)), this, SLOT(OnItemEditSot(const int&)));
+		disconnect(pItem, SIGNAL(sigDelete(const int&)), this, SLOT(OnItemDeleteSot(const int&)));
+		delete pItem;
+		pItem = nullptr;
+	}
 }
 
 bool LiveTimeSet::eventFilter(QObject *watched, QEvent *event)
@@ -269,13 +295,16 @@ void LiveTimeSet::AddLiveStartEndTime(const STLiveTime& stLiveTime)
 {
 	if (mapIndex2Item.size()<3)
 	{
-		LiveTimeItem* pItem = new LiveTimeItem(this);
+		LiveTimeItem* pItem = new LiveTimeItem(this); 
 		connect(pItem,SIGNAL(sigEdit(const int&)),this,SLOT(OnItemEditSot(const int&)));
+		connect(pItem, SIGNAL(sigDelete(const int&)), this, SLOT(OnItemDeleteSot(const int&)));
 		pItem->setFixedSize(533, 36);
 		int size_ = mapIndex2Item.size();
 		if (pLiveItemsVLayout !=nullptr )
 		{
 			pLiveItemsVLayout->addWidget(pItem);
+			pItem->SetIndex(size_ + 1);
+			mapIndex2Item[size_ + 1] = pItem;
 		}
 	}
 }
@@ -357,6 +386,11 @@ void LiveTimeItem::SetIndex(int index)
 	nIndex = index;
 }
 
+int LiveTimeItem::GetIndex()
+{
+	return nIndex;
+}
+
 void LiveTimeItem::OnBtnClicked(ELiveSetBtn eBtn)
 {
 	switch (eBtn)
@@ -370,6 +404,10 @@ void LiveTimeItem::OnBtnClicked(ELiveSetBtn eBtn)
 	{
 		int nExec = CommonMsgWidget::information(nullptr, QStringLiteral("确定删除开播时间?"), eMsgCancleOk);
 		qDebug() << "nExec:" << nExec;
+		if (nExec==1)
+		{
+			emit sigDelete(nIndex);
+		}
 	}
 		break;
 	default:
@@ -378,7 +416,8 @@ void LiveTimeItem::OnBtnClicked(ELiveSetBtn eBtn)
 }
 
 const QString strCombo = QString("\
-	QComboBox{padding: 0px 0px 0px 52px;background-color:transparent;border: none;font-weight:600;color:rgb(51, 51, 51);line-height:22px;}\
+	QComboBox#StartCombo{padding: 0px 0px 0px 52px;background-color:transparent;border: none;font-weight:600;color:rgb(51, 51, 51);line-height:22px;}\
+	QComboBox#StopCombo{padding: 0px 0px 0px 0px;background-color:transparent;border: none;font-weight:600;color:rgb(51, 51, 51);line-height:22px;}\
 	QComboBox:hover{border: none;}\
 	QComboBox:focus{background-color:transparent;border: none;}\
 	QComboBox::drop-down{border-image: url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;width: 11px;height: 9px;border: 0px;margin-top:14px;margin-right:6px;}\
@@ -392,6 +431,10 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 	:QWidget(parent)
 	, pStartCombo(nullptr)
 	, pStopCombo(nullptr)
+	, nStartIndex(0)
+	, nStopIndex(0)
+	, nLiveItem(0)
+	, eLiveSetBtn(eLiveSetBtnCancle)
 {
 	resize(360,208);
 	QLabel* pLabel = new QLabel(this);
@@ -425,21 +468,25 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 	/*QLineEdit *lineEdit = new QLineEdit;
 	lineEdit->setReadOnly(true);
 	lineEdit->setAlignment(Qt::AlignCenter);
-
-	QLineEdit *lineEdit2 = new QLineEdit;
+	*/
+	lineEdit2 = new QLineEdit;
 	lineEdit2->setReadOnly(true);
-	lineEdit2->setAlignment(Qt::AlignCenter);*/
+	lineEdit2->setAlignment(Qt::AlignCenter);
+	lineEdit2->installEventFilter(this);
 
 	pStartCombo = new QComboBox(this);
+	
 	pStopCombo = new QComboBox(this);
 	pStartCombo->setMaxVisibleItems(5);
 	pStopCombo->setMaxVisibleItems(5);
 
 	//pStartCombo->setLineEdit(lineEdit);
-	//pStopCombo->setLineEdit(lineEdit2);
+	pStopCombo->setLineEdit(lineEdit2);
 	
 	pStartCombo->setStyleSheet(strCombo);
+	pStartCombo->setObjectName("StartCombo");
 	pStopCombo->setStyleSheet(strCombo);
+	pStopCombo->setObjectName("StopCombo");
 	pStartCombo->setGeometry(20,88,154,36);
 	pStopCombo->setGeometry(186, 88, 154, 36);
 
@@ -479,7 +526,8 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 	
 	pStartCombo->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	pStopCombo->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
+	connect(pStartCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnStartComboBoxIndexChanged(int)));
+	connect(pStopCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnStopComboBoxIndexChanged(int)));
 
 	
 
@@ -522,4 +570,75 @@ void TimeSpecify::OnBtnClicked(ELiveSetBtn eBtn)
 		break;
 	}
 	qDebug() << "eBtn:" << eBtn;
+	emit sigLiveSet(nLiveItem);
+	hide();
+}
+
+ELiveSetBtn TimeSpecify::GetState()
+{
+	return eLiveSetBtn;
+}
+
+void TimeSpecify::OnStartComboBoxIndexChanged(int index)
+{
+	nStartIndex = index;
+	qDebug() << "index:" << index;
+	CheckStartToEnd();
+}
+
+void TimeSpecify::OnStopComboBoxIndexChanged(int index)
+{
+	nStopIndex = index;
+	qDebug() << "index:" << index;
+	CheckStartToEnd();
+}
+
+void TimeSpecify::CheckStartToEnd()
+{
+	if (nStartIndex<nStopIndex)
+	{
+		QString strText = pStopCombo->itemText(nStopIndex);
+		pStopCombo->setEditText(strText);
+	}
+	else if (nStartIndex >= nStopIndex && nStopIndex > 0)
+	{
+		QString strText =pStopCombo->itemText(nStopIndex);
+		strText += QStringLiteral("(次日)");
+		pStopCombo->setEditText(strText);
+	}
+}
+
+bool TimeSpecify::eventFilter(QObject *watched, QEvent *event)
+{
+	if (watched== lineEdit2)
+	{
+		if (event->type()==event->MouseButtonPress)
+		{
+			pStopCombo->showPopup();
+		}
+	}
+	return QWidget::eventFilter(watched, event);
+}
+
+int TimeSpecify::GetStartIndex()
+{
+	return nStopIndex;
+}
+
+int TimeSpecify::GetStopIndex()
+{
+	return nStartIndex;
+}
+
+int TimeSpecify::GetLiveItem()
+{
+	return nLiveItem;
+}
+
+void TimeSpecify::SetLiveItem(int nLive)
+{
+	pStartCombo->setCurrentIndex(0);
+	pStopCombo->setCurrentIndex(0);
+	nStartIndex = nStopIndex = 0;
+	nLiveItem=nLive;
 }

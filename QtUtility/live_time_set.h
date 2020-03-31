@@ -36,10 +36,12 @@ public:
 	LiveTimeItem& operator=(const LiveTimeItem&) = delete;
 
 	void SetIndex(int index);
+	int GetIndex();
 	public slots:
 	void OnBtnClicked(ELiveSetBtn eBtn);
 signals:
 	void sigEdit(const int &);
+	void sigDelete(const int &);
 private:
 	QLabel* pLabelBg;
 	QLabel* pStartTime;
@@ -59,11 +61,30 @@ public:
 
 	TimeSpecify(const TimeSpecify&) = delete;
 	TimeSpecify& operator=(const TimeSpecify&) = delete;
+
+	void CheckStartToEnd();
+	int GetStartIndex();
+	int GetStopIndex();
+	void SetLiveItem(int nLive);
+	int GetLiveItem();
+	ELiveSetBtn GetState();
+signals:
+	void sigLiveSet(const int & nLiveItem);
+protected:
+	virtual bool eventFilter(QObject *watched, QEvent *event);
 public slots:
 	void OnBtnClicked(ELiveSetBtn eBtn);
+	void OnStartComboBoxIndexChanged(int);
+	void OnStopComboBoxIndexChanged(int);
 private:
 	QComboBox* pStartCombo;
 	QComboBox* pStopCombo;
+
+	QLineEdit *lineEdit2;
+	int nStartIndex;
+	int nStopIndex;
+	int nLiveItem;
+	ELiveSetBtn eLiveSetBtn;
 };
 
 class LiveTimeSet : public RoundedWidget {
@@ -86,6 +107,8 @@ public slots:
 	void OnTextChangeSlot(const QString &);
 	void OnBtnClicked(ELiveSetBtn eBtn);
 	void OnItemEditSot(const int&);
+	void OnItemDeleteSot(const int&);
+	void OnLiveSetSlot(const int &);
 private:
 	QPoint  m_relativeInit;
 	bool    m_bLeftBtnPress;
