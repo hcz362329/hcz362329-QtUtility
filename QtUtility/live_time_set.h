@@ -37,8 +37,10 @@ public:
 
 	void SetIndex(int index);
 	int GetIndex();
-	public slots:
+	void SetStartEndTime(const QString & strStart, const QString & strEnd, bool bNextDay=false);
+public slots:
 	void OnBtnClicked(ELiveSetBtn eBtn);
+	
 signals:
 	void sigEdit(const int &);
 	void sigDelete(const int &);
@@ -46,7 +48,8 @@ private:
 	QLabel* pLabelBg;
 	QLabel* pStartTime;
 	QLabel* pEndTime;
-
+	QString strStart;
+	QString strEnd;
 	QPushButton* pBtnEdit;
 	QPushButton* pBtnDelete;
 	int nIndex;
@@ -68,6 +71,8 @@ public:
 	void SetLiveItem(int nLive);
 	int GetLiveItem();
 	ELiveSetBtn GetState();
+	bool IsNextDay();
+	void GetTimeInfo(QString & strStart, QString & strEnd);
 signals:
 	void sigLiveSet(const int & nLiveItem);
 protected:
@@ -76,10 +81,11 @@ public slots:
 	void OnBtnClicked(ELiveSetBtn eBtn);
 	void OnStartComboBoxIndexChanged(int);
 	void OnStopComboBoxIndexChanged(int);
+	void OnStopComboBoxIndexChanged(const QString &);
 private:
 	QComboBox* pStartCombo;
 	QComboBox* pStopCombo;
-
+	QLineEdit *lineEdit;
 	QLineEdit *lineEdit2;
 	int nStartIndex;
 	int nStopIndex;
@@ -94,9 +100,11 @@ public:
 	LiveTimeSet(QWidget * parent = 0);
 	~LiveTimeSet();
 
-	void AddLiveStartEndTime(const STLiveTime& stLiveTime);
+	void AddLiveStartEndTime(const QString& startTime, const QString& strEndTime,bool bNextDay = false);
 	LiveTimeSet(const LiveTimeSet&) = delete;
 	LiveTimeSet& operator=(const LiveTimeSet&) = delete;
+
+	void CountChange();
 protected:
 	virtual void mousePressEvent(QMouseEvent *);
 	virtual void mouseReleaseEvent(QMouseEvent *);
@@ -109,6 +117,7 @@ public slots:
 	void OnItemEditSot(const int&);
 	void OnItemDeleteSot(const int&);
 	void OnLiveSetSlot(const int &);
+	void OnAddLiveTimeSlot();
 private:
 	QPoint  m_relativeInit;
 	bool    m_bLeftBtnPress;

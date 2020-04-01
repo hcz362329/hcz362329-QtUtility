@@ -95,11 +95,6 @@ CommonMsgWidget::~CommonMsgWidget()
 int CommonMsgWidget::information(QWidget* parent, QString strText, EMsgType eType)
 {
 	CommonMsgWidget widget(strText, eType, parent);
-	/*if (parent != nullptr)
-	{
-	widget.move(parent->mapToGlobal(QPoint((parent->width() - widget.width()) / 2,
-	(parent->height() - widget.height()) / 2)));
-	}*/
 	return widget.exec();
 }
 

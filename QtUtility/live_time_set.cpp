@@ -23,7 +23,11 @@ LiveTimeSet::LiveTimeSet(QWidget * parent)
 	, nEditItem(0)
 	, pTimeSpecify(nullptr)
 {
+	resize(533, 346);
 	setWindowFlags(Qt::FramelessWindowHint);
+	QLabel*  pBg = new QLabel(this);
+	pBg->setGeometry(0,0, 533, 346);
+	pBg->setStyleSheet("background-color:rgb(35,36,41);border-radius:7px;");
 	pLablTitle = new QLabel(this);
 	pLablTitle->setFixedHeight(22);
 	pLablTitle->setText(QStringLiteral("我的开播设置"));
@@ -94,6 +98,7 @@ LiveTimeSet::LiveTimeSet(QWidget * parent)
 	pLiveTimeCount->setFixedHeight(17);
 	pLiveTimeCount->setStyleSheet("background:rgba(255,255,255,0);font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgb(178,178,180);line-height:17px;");
 	pLiveTimeCount->installEventFilter(this);
+	connect(pLiveTimeCount, SIGNAL(clicked()), this, SLOT(OnAddLiveTimeSlot()));
 
 	pLiveTimeCountTip = new QPushButton(this);
 	pLiveTimeCountTip->setStyleSheet("border-image:url(:/res/Resources/images/add_tip.png);");
@@ -209,10 +214,26 @@ void LiveTimeSet::OnItemEditSot(const int& index)
 
 void LiveTimeSet::OnLiveSetSlot(const int & index)
 {
-	QMap<int, LiveTimeItem*>::iterator iter = mapIndex2Item.find(index);
-	if (iter != mapIndex2Item.end())
+	if (pTimeSpecify != nullptr)
 	{
-		LiveTimeItem* pItem = iter.value();
+		QString strStart, strStop;
+		pTimeSpecify->GetTimeInfo(strStart, strStop);
+		QMap<int, LiveTimeItem*>::iterator iter = mapIndex2Item.find(index);
+		if (iter != mapIndex2Item.end())
+		{
+			LiveTimeItem* pItem = iter.value();
+			pItem->SetStartEndTime(strStart, strStop, pTimeSpecify->IsNextDay());
+		}
+		else
+		{
+			if (pTimeSpecify != nullptr)
+			{
+				if (pTimeSpecify->GetState() == eLiveSetBtnOk)
+				{
+					AddLiveStartEndTime(strStart, strStop, pTimeSpecify->IsNextDay());
+				}
+			}
+		}
 	}
 }
 
@@ -222,13 +243,24 @@ void LiveTimeSet::OnItemDeleteSot(const int& index)
 	if (iter != mapIndex2Item.end() )
 	{
 		LiveTimeItem* pItem = iter.value();
-		mapIndex2Item.remove(nEditItem);
+		mapIndex2Item.erase(iter);
 		pLiveItemsVLayout->removeWidget(pItem);
 		disconnect(pItem, SIGNAL(sigEdit(const int&)), this, SLOT(OnItemEditSot(const int&)));
 		disconnect(pItem, SIGNAL(sigDelete(const int&)), this, SLOT(OnItemDeleteSot(const int&)));
+		CountChange();
 		delete pItem;
 		pItem = nullptr;
 	}
+}
+
+void LiveTimeSet::OnAddLiveTimeSlot()
+{
+	int size_ = mapIndex2Item.size();
+	if (size_==3)
+	{
+		return;
+	}
+	OnItemEditSot(size_+1);
 }
 
 bool LiveTimeSet::eventFilter(QObject *watched, QEvent *event)
@@ -291,11 +323,12 @@ void LiveTimeSet::mouseMoveEvent(QMouseEvent *e)
 	RoundedWidget::mouseMoveEvent(e);
 }
 
-void LiveTimeSet::AddLiveStartEndTime(const STLiveTime& stLiveTime)
+void LiveTimeSet::AddLiveStartEndTime(const QString& startTime, const QString& strEndTime, bool bNextDay)
 {
 	if (mapIndex2Item.size()<3)
 	{
 		LiveTimeItem* pItem = new LiveTimeItem(this); 
+		pItem->SetStartEndTime(startTime, strEndTime, bNextDay);
 		connect(pItem,SIGNAL(sigEdit(const int&)),this,SLOT(OnItemEditSot(const int&)));
 		connect(pItem, SIGNAL(sigDelete(const int&)), this, SLOT(OnItemDeleteSot(const int&)));
 		pItem->setFixedSize(533, 36);
@@ -306,6 +339,17 @@ void LiveTimeSet::AddLiveStartEndTime(const STLiveTime& stLiveTime)
 			pItem->SetIndex(size_ + 1);
 			mapIndex2Item[size_ + 1] = pItem;
 		}
+		CountChange();
+	}
+}
+
+void LiveTimeSet::CountChange()
+{
+	int size_ = mapIndex2Item.size();
+	if (pLiveTimeCount!=nullptr)
+	{
+		QString str = QStringLiteral("+添加 (%1/3)").arg(size_);
+		pLiveTimeCount->setText(str);
 	}
 }
 
@@ -336,7 +380,7 @@ LiveTimeItem::LiveTimeItem(QWidget * parent)
 	pOpen->setFixedSize(55,17);
 	pOpen->setStyleSheet(strItemText);
 	pLayout->addWidget(pOpen);
-	pStartTime = new QLabel("00:000000000",this);
+	pStartTime = new QLabel("00:00",this);
 	pStartTime->setFixedSize(59,17);
 	pStartTime->setStyleSheet(strTimeText);
 	pStartTime->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -345,7 +389,7 @@ LiveTimeItem::LiveTimeItem(QWidget * parent)
 	pEnd->setFixedSize(55, 17);
 	pEnd->setStyleSheet(strItemText);
 	pLayout->addWidget(pEnd);
-	pEndTime = new QLabel("00:000000000",this);
+	pEndTime = new QLabel("00:00",this);
 	pEndTime->setFixedSize(88,17);
 	pEndTime->setStyleSheet(strTimeText);
 	pEndTime->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -374,6 +418,15 @@ LiveTimeItem::LiveTimeItem(QWidget * parent)
 	} };
 	connect(pBtnEdit,&QPushButton::clicked, edit_slot);
 	connect(pBtnDelete, &QPushButton::clicked, delete_slot);
+}
+
+void LiveTimeItem::SetStartEndTime(const QString & strStart_, const QString & strEnd_, bool bNextDay)
+{
+	strStart = strStart_;
+	strEnd= strEnd_;
+	pStartTime->setText(strStart);
+	QString strNext = bNextDay ? strEnd_ + QStringLiteral("(次日)") : strEnd_;
+	pEndTime->setText(strNext);
 }
 
 LiveTimeItem::~LiveTimeItem()
@@ -416,16 +469,15 @@ void LiveTimeItem::OnBtnClicked(ELiveSetBtn eBtn)
 }
 
 const QString strCombo = QString("\
-	QComboBox#StartCombo{padding: 0px 0px 0px 52px;background-color:transparent;border: none;font-weight:600;color:rgb(51, 51, 51);line-height:22px;}\
-	QComboBox#StopCombo{padding: 0px 0px 0px 0px;background-color:transparent;border: none;font-weight:600;color:rgb(51, 51, 51);line-height:22px;}\
+	QComboBox{padding: 0px 0px 0px 0px;background-color:transparent;border: none;font-weight:600;color:rgb(51, 51, 51);line-height:22px;}\
 	QComboBox:hover{border: none;}\
 	QComboBox:focus{background-color:transparent;border: none;}\
-	QComboBox::drop-down{border-image: url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;width: 11px;height: 9px;border: 0px;margin-top:14px;margin-right:6px;}\
-	QComboBox::drop-down:hover{border-image:url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;}\
-	QComboBox::drop-down:pressed{border-image:url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;}\
-	QComboBox QAbstractItemView{outline:0px;width:160px;height:150px;background-color:#151515;border:1px solid #151515;}\
+	QComboBox::drop-down{background:rgba(255,255,255,10);border-image: url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;width: 11px;height: 9px;border: 0px;margin-top:14px;margin-right:6px;}\
+	QComboBox::drop-down:hover{background:rgba(255,255,255,30);border-image:url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;}\
+	QComboBox::drop-down:pressed{background:rgba(255,255,255,50);border-image:url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;}\
+	QComboBox QAbstractItemView{width:154px;height:150px;outline:0px;background-color:#151515;border:1px solid #151515;}\
 	QComboBox QAbstractItemView::item{height:30px;border:0px;background-color:#151515;color:rgba(255,255,255,153);font-size:16px;font-weight:400;line-height:22px;}\
-	QComboBox QAbstractItemView::item:selected{background-color:#414246;font-weight:400;color:rgb(255, 255, 255);line-height:22px;font-size:16px;}");
+	QComboBox QAbstractItemView::item:selected{height:30px;background-color:#414246;font-weight:400;color:rgb(255, 255, 255);line-height:22px;font-size:16px;}");
 
 TimeSpecify::TimeSpecify(QWidget* parent)
 	:QWidget(parent)
@@ -465,28 +517,27 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 	pLabelComBoxSeprate->setGeometry(174, 106, 12, 1);
 	pLabelComBoxSeprate->setStyleSheet("background:#E0E0E0;");
 
-	/*QLineEdit *lineEdit = new QLineEdit;
+	lineEdit = new QLineEdit;
 	lineEdit->setReadOnly(true);
 	lineEdit->setAlignment(Qt::AlignCenter);
-	*/
+	lineEdit->installEventFilter(this);
 	lineEdit2 = new QLineEdit;
 	lineEdit2->setReadOnly(true);
 	lineEdit2->setAlignment(Qt::AlignCenter);
 	lineEdit2->installEventFilter(this);
 
 	pStartCombo = new QComboBox(this);
-	
 	pStopCombo = new QComboBox(this);
 	pStartCombo->setMaxVisibleItems(5);
 	pStopCombo->setMaxVisibleItems(5);
 
-	//pStartCombo->setLineEdit(lineEdit);
+	pStartCombo->setLineEdit(lineEdit);
 	pStopCombo->setLineEdit(lineEdit2);
 	
 	pStartCombo->setStyleSheet(strCombo);
-	pStartCombo->setObjectName("StartCombo");
+	pStartCombo->setObjectName("StartStopCombo");
 	pStopCombo->setStyleSheet(strCombo);
-	pStopCombo->setObjectName("StopCombo");
+	pStopCombo->setObjectName("StartStopCombo");
 	pStartCombo->setGeometry(20,88,154,36);
 	pStopCombo->setGeometry(186, 88, 154, 36);
 
@@ -511,8 +562,12 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 		item->setTextAlignment(Qt::AlignCenter);
 		listWidget->addItem(item);
 	}
+	listWidget->setStyleSheet("padding: 0px 0px;");
+	listWidget->setContentsMargins(0, 0, 0, 0);
 	pStartCombo->setModel(listWidget->model());
 	pStartCombo->setView(listWidget);
+
+	
 
 	QListWidget *listWidget2 = new QListWidget(this);
 	for (int i = 0; i < list.count(); ++i)
@@ -521,6 +576,8 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 		item->setTextAlignment(Qt::AlignCenter);
 		listWidget2->addItem(item);
 	}
+	listWidget2->setStyleSheet("padding: 0px 0px;");
+	listWidget2->setContentsMargins(0, 0, 0, 0);
 	pStopCombo->setModel(listWidget2->model());
 	pStopCombo->setView(listWidget2);
 	
@@ -528,6 +585,8 @@ TimeSpecify::TimeSpecify(QWidget* parent)
 	pStopCombo->view()->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	connect(pStartCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnStartComboBoxIndexChanged(int)));
 	connect(pStopCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnStopComboBoxIndexChanged(int)));
+	connect(pStopCombo, SIGNAL(editTextChanged(const QString&)), this, SLOT(OnStopComboBoxIndexChanged(const QString&)));
+	//void editTextChanged(const QString &);
 
 	
 
@@ -558,6 +617,7 @@ TimeSpecify::~TimeSpecify()
 
 void TimeSpecify::OnBtnClicked(ELiveSetBtn eBtn)
 {
+	eLiveSetBtn = eBtn;
 	switch (eBtn)
 	{
 	case eLiveSetBtnClose:
@@ -586,10 +646,27 @@ void TimeSpecify::OnStartComboBoxIndexChanged(int index)
 	CheckStartToEnd();
 }
 
+void TimeSpecify::GetTimeInfo(QString & strStart, QString & strEnd)
+{
+	strStart = pStartCombo->itemText(nStartIndex);
+	strEnd = pStopCombo->itemText(nStopIndex);
+}
+
+bool TimeSpecify::IsNextDay()
+{
+	bool bNext = GetStartIndex() >= GetStopIndex() && GetStopIndex() != 0;
+	return bNext;
+}
+
 void TimeSpecify::OnStopComboBoxIndexChanged(int index)
 {
 	nStopIndex = index;
 	qDebug() << "index:" << index;
+	CheckStartToEnd();
+}
+
+void TimeSpecify::OnStopComboBoxIndexChanged(const QString &text)
+{
 	CheckStartToEnd();
 }
 
@@ -617,17 +694,24 @@ bool TimeSpecify::eventFilter(QObject *watched, QEvent *event)
 			pStopCombo->showPopup();
 		}
 	}
+	if (watched == lineEdit)
+	{
+		if (event->type() == event->MouseButtonPress)
+		{
+			pStartCombo->showPopup();
+		}
+	}
 	return QWidget::eventFilter(watched, event);
 }
 
 int TimeSpecify::GetStartIndex()
 {
-	return nStopIndex;
+	return nStartIndex;
 }
 
 int TimeSpecify::GetStopIndex()
 {
-	return nStartIndex;
+	return nStopIndex;
 }
 
 int TimeSpecify::GetLiveItem()

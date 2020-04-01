@@ -119,14 +119,11 @@ void TestView()
 void TestLiveSet()
 {
 	LiveTimeSet* set = new LiveTimeSet;
-	set->SetRoundedColor(533, 346, 7, 35, 36, 41);
+	//set->SetRoundedColor(533, 346, 7, 35, 36, 41);
 	set->setFixedSize(533, 346);
-	STLiveTime stLiveTime;
-	stLiveTime.startTime = "08::00";
-	stLiveTime.endTime = "18:00";
-	set->AddLiveStartEndTime(stLiveTime);
-	set->AddLiveStartEndTime(stLiveTime);
-	set->AddLiveStartEndTime(stLiveTime);
+	set->AddLiveStartEndTime("00:00","00:00");
+	set->AddLiveStartEndTime("00:00", "00:00");
+	set->AddLiveStartEndTime("00:00", "00:00");
 	set->show();
 }
 
