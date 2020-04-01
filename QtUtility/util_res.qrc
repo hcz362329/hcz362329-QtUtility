@@ -26,5 +26,8 @@
         <file>Resources/images/clear.png</file>
         <file>Resources/images/edit.png</file>
         <file>Resources/images/down_arrow.png</file>
+        <file>Resources/images/edit2.png</file>
+        <file>Resources/images/clear2.png</file>
+        <file>Resources/images/tip_live_set2.png</file>
     </qresource>
 </RCC>

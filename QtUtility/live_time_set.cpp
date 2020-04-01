@@ -91,7 +91,7 @@ LiveTimeSet::LiveTimeSet(QWidget * parent)
 	pLiveTimeTitle->setStyleSheet("font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgb(255, 255, 255);line-height:17px;");
 	pTipBtn = new QPushButton(this);
 	pTipBtn->setFixedSize(14, 14);
-	pTipBtn->setStyleSheet(strStyleButtonSet.arg(":/res/Resources/images/tip_live_set.png").arg(":/res/Resources/images/tip_live_set.png").arg(":/res/Resources/images/tip_live_set.png"));
+	pTipBtn->setStyleSheet(strStyleButtonSet.arg(":/res/Resources/images/tip_live_set.png").arg(":/res/Resources/images/tip_live_set2.png").arg(":/res/Resources/images/tip_live_set2.png"));
 	pTipBtn->installEventFilter(this);
 
 	pLiveTimeCount = new QPushButton(QStringLiteral("+添加 (3/3)"),this);
@@ -357,7 +357,7 @@ void LiveTimeSet::CountChange()
 const QString strItemLabel = QString("background-color:rgba(46,47,51,255);border-radius:2px;");
 const QString strItemText = QString("font-size:12px;font-family:PingFangSC-Regular, PingFang SC;font-weight:400;color:rgba(255,255,255,153);line-height:17px;");
 const QString strTimeText = QString("font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:rgba(255,255,255,255);line-height:17px; ");
-const QString strBtn = QString("QPushButton{border-image:url(%1);}QPushButton::hover{border-image:url(%2);background-color:rgba(255,255,255,60);}QPushButton::pressed{border-image:url(%3);background-color:rgba(255,255,255,60);}");
+const QString strBtn = QString("QPushButton{border-image:url(%1);}QPushButton::hover{border-image:url(%2);}QPushButton::pressed{border-image:url(%3);}");
 
 LiveTimeItem::LiveTimeItem(QWidget * parent)
 	: QWidget(parent)
@@ -397,12 +397,12 @@ LiveTimeItem::LiveTimeItem(QWidget * parent)
 	pLayout->addSpacing(8);
 	pBtnEdit = new QPushButton(this);
 	pBtnEdit->setFixedSize(20,20);
-	pBtnEdit->setStyleSheet(strBtn.arg(":/res/Resources/images/edit.png").arg(":/res/Resources/images/edit.png").arg(":/res/Resources/images/edit.png"));
+	pBtnEdit->setStyleSheet(strBtn.arg(":/res/Resources/images/edit.png").arg(":/res/Resources/images/edit2.png").arg(":/res/Resources/images/edit2.png"));
 	pLayout->addWidget(pBtnEdit);
 	pLayout->addSpacing(6);
 	pBtnDelete = new QPushButton(this);
 	pBtnDelete->setFixedSize(20, 18);
-	pBtnDelete->setStyleSheet(strBtn.arg(":/res/Resources/images/clear.png").arg(":/res/Resources/images/clear.png").arg(":/res/Resources/images/clear.png"));
+	pBtnDelete->setStyleSheet(strBtn.arg(":/res/Resources/images/clear.png").arg(":/res/Resources/images/clear2.png").arg(":/res/Resources/images/clear2.png"));
 	pLayout->addWidget(pBtnDelete);
 	pLayout->addStretch();
 
