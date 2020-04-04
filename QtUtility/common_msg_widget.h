@@ -19,7 +19,7 @@ public:
 	CommonMsgWidget(QString strText, EMsgType eType,QWidget* parent = nullptr);
 	~CommonMsgWidget();
 
-	static int information(QWidget* parent, QString strText, EMsgType eType);
+	static int information(QWidget* parent, QString strText, EMsgType eType=eMsgKnow);
 	void CreateBg();
 protected:
 	virtual void paintEvent(QPaintEvent* event);

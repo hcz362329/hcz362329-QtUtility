@@ -474,7 +474,7 @@ const QString strCombo = QString("\
 	QComboBox:focus{background-color:transparent;border: none;}\
 	QComboBox::drop-down{background:rgba(255,255,255,10);border-image: url(:/res/Resources/images/down_arrow.png) 0 0 0 0 repeat repeat;width: 11px;height: 9px;border: 0px;margin-top:14px;margin-right:6px;}\
 	QComboBox::drop-down:hover{background:rgba(255,255,255,30);border-image:url(:/res/Resources/images/down_arrow2.png) 0 0 0 0 repeat repeat;}\
-	QComboBox::drop-down:pressed{background:rgba(255,255,255,50);border-image:url(:/res/Resources/images/down_arrow2.png) 0 0 0 0 repeat repeat;}\
+	QComboBox::drop-down:pressed{background:rgba(255,255,255,50);border-image:url(:/res/Resources/images/down_arrow3.png) 0 0 0 0 repeat repeat;}\
 	QComboBox QAbstractItemView{width:154px;height:150px;outline:0px;background-color:#151515;border:1px solid #151515;}\
 	QComboBox QAbstractItemView::item{height:30px;border:0px;background-color:#151515;color:rgba(255,255,255,153);font-size:16px;font-weight:400;line-height:22px;}\
 	QComboBox QAbstractItemView::item:selected{height:30px;background-color:#414246;font-weight:400;color:rgb(255, 255, 255);line-height:22px;font-size:16px;}");

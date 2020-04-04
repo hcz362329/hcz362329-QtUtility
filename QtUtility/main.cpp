@@ -64,8 +64,15 @@ int main(int argc, char *argv[])
 	a.setQuitOnLastWindowClosed(true);
 	QDir::setCurrent(QApplication::instance()->applicationDirPath());
 	TestLiveSet();
+	QWidget* pWidget = new QWidget;
+	pWidget->setGeometry(300, 400, 500, 500);
+	QTextEdit* pEdit= new QTextEdit(pWidget);
+	pEdit->setStyleSheet("font-size:12px;font-weight:400;");
+	QString strText = QString("<a style =\"color:%2;font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;line-height:17px;\">%1</a><a style =\"color:%4;font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;line-height:17px;\">%3</a>").arg("111:").arg(QString("#D3D531")).arg("nihao").arg("#90F4F4");
+	pEdit->append(strText);
+	pWidget->show();
 	//TestView();
-	CreatePixmap();
+	//QtHelper::CreatePixmapList();
 	return a.exec();
 	
 }

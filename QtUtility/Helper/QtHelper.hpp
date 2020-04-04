@@ -103,6 +103,26 @@ public:
 		return pixmap;
 	}
 
+	static void CreatePixmapList()
+	{
+		for ( int i = 0 ; i <= 255; i++ )
+		{
+			QPixmap pixmap = QPixmap(200, 200);
+			pixmap.fill(Qt::transparent);
+			QPainter painter;
+			painter.begin(&pixmap);
+			painter.setRenderHint(QPainter::Antialiasing, true);
+			QColor color1 = QColor(21, 21, 21,i);
+
+			painter.setBrush(color1);
+			painter.setPen(color1);
+			painter.drawRect(QRect(50,50,50,50));
+			painter.end();
+			QString strName = QString("./image%1.png").arg(i);
+			pixmap.save(strName);
+		}
+	}
+
 	static QPixmap GetPixmap2(int w, int h)
 	{
 		QPixmap pixmap = QPixmap(160, 30);
