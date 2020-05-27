@@ -56,9 +56,7 @@ void OpacityWidget::paintEvent(QPaintEvent *event)
 	imagePain.begin(&temp);
 	// ·´×ßÑù
 	imagePain.setRenderHint(QPainter::Antialiasing, true);
-	//imagePain.setCompositionMode(QPainter::CompositionMode_Source);
 	imagePain.drawPixmap(0, 0, m_pixmap);
-	//imagePain.setCompositionMode(QPainter::CompositionMode_DestinationIn);
 	imagePain.fillRect(temp.rect(), QColor(0, 0, 0, 0.2));
 	imagePain.end();
 	painter.drawPixmap(0,0,temp);

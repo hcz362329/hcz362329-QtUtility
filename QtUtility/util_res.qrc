@@ -31,5 +31,15 @@
         <file>Resources/images/tip_live_set2.png</file>
         <file>Resources/images/down_arrow2.png</file>
         <file>Resources/images/down_arrow3.png</file>
+        <file>Resources/images/source_camera1.png</file>
+        <file>Resources/images/mic_mute2.png</file>
+        <file>Resources/font/seguisym.ttf</file>
+        <file>Resources/font/seguisym2.ttf</file>
+        <file>Resources/images/head.png</file>
+        <file>Resources/images/status_send_fail.png</file>
+        <file>Resources/images/status_sending.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>Resources/font/EmojiOneColor-SVGinOT.ttf</file>
     </qresource>
 </RCC>

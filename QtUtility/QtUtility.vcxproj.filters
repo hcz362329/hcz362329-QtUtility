@@ -75,6 +75,21 @@
     <Filter Include="Simple">
       <UniqueIdentifier>{ee185805-865e-4aba-a8b5-1c2193cac5d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="zip">
+      <UniqueIdentifier>{f308a017-dc00-43dc-b244-b27c1bdad759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shape">
+      <UniqueIdentifier>{99b879b5-6359-4709-a23f-45da37670f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{a35c5e4e-1fc9-4548-8235-ac64256f0375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="emoji">
+      <UniqueIdentifier>{1dc6f305-cffd-45dc-bed2-41f222a9370b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IM">
+      <UniqueIdentifier>{4868a758-b3e8-4a96-8e3b-ec55bf790281}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -644,6 +659,102 @@
     <ClCompile Include="live_time_set.cpp">
       <Filter>Simple</Filter>
     </ClCompile>
+    <ClCompile Include="gift_flowlight_manager.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_gift_flowlight_manager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_gift_flowlight_manager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="StyleSheetWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_StyleSheetWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_StyleSheetWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="official_tip_widget.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_official_tip_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_official_tip_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="zip\unzip.cpp">
+      <Filter>zip</Filter>
+    </ClCompile>
+    <ClCompile Include="zip\zip.cpp">
+      <Filter>zip</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>shape</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Circle.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Circle.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="QtApp.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_QtApp.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_QtApp.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="emoji.cpp">
+      <Filter>emoji</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_emoji.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_emoji.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="imwidget.cpp">
+      <Filter>IM</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_imwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_imwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="chat_content_widget.cpp">
+      <Filter>IM</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_chat_content_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_chat_content_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="chat_list_widget.cpp">
+      <Filter>IM</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_chat_list_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_chat_list_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="content_item_widget.cpp">
+      <Filter>IM</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_content_item_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_content_item_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="myclass.ui">
@@ -844,6 +955,36 @@
     <CustomBuild Include="live_time_set.h">
       <Filter>Simple</Filter>
     </CustomBuild>
+    <CustomBuild Include="gift_flowlight_manager.h">
+      <Filter>Animation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="StyleSheetWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="official_tip_widget.h">
+      <Filter>Animation</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Circle.h">
+      <Filter>shape</Filter>
+    </CustomBuild>
+    <CustomBuild Include="QtApp.h">
+      <Filter>App</Filter>
+    </CustomBuild>
+    <CustomBuild Include="emoji.h">
+      <Filter>emoji</Filter>
+    </CustomBuild>
+    <CustomBuild Include="imwidget.h">
+      <Filter>IM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="chat_content_widget.h">
+      <Filter>IM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="chat_list_widget.h">
+      <Filter>IM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="content_item_widget.h">
+      <Filter>IM</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_myclass.h">
@@ -929,6 +1070,12 @@
     </ClInclude>
     <ClInclude Include="qss.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zip\unzip.h">
+      <Filter>zip</Filter>
+    </ClInclude>
+    <ClInclude Include="zip\zip.h">
+      <Filter>zip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

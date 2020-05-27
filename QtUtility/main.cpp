@@ -33,6 +33,19 @@
 #include "BaseMoveDlg.h"
 #include "live_time_set.h"
 #include "LiveTimeView.h"
+#include "gift_flowlight_manager.h"
+#include "official_tip_widget.h"
+#include <QProgressBar>
+#include <QTextEdit>
+#include <iostream>
+#include <map>
+#include <time.h>
+#include "zip/unzip.h"
+#include "Circle.h"
+#include "StyleSheetWidget.h"
+#include "QtApp.h"
+#include "emoji.h"
+#include "imwidget.h"
 //#include<QtPlugin>
 //Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
 //Q_IMPORT_PLUGIN(QICOPlugin)
@@ -57,27 +70,133 @@ void TestMoveDlg();
 void TestLiveSet();
 void TestView();
 void CreatePixmap();
+void TestFlowLight();
+void TestCss();
+void TestOfficialTip();
+void TestZip();
+void TestFuncPtr();
+struct T {
+	bool isHighFrequency;
+	int orderBig;
+	int index;
+	T() {
+		isHighFrequency = false;
+		orderBig = 0;
+		index = 0;
+	}
+	bool operator <(const T & other)const {
+		return this->orderBig <= other.orderBig;
+	}
+};
+
+long find_maximum(long* array, size_t size) {
+	long max = 0;
+	for (int i = 0; i < size; i++) {
+		if (array[i] > max)
+			max = array[i];
+	}
+	return max;
+}
+int _stdcall test_function(int);
+void TestDateTime();
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
+	QtUtilityApp a(argc, argv);
 	a.setQuitOnLastWindowClosed(true);
 	QDir::setCurrent(QApplication::instance()->applicationDirPath());
-	TestLiveSet();
-	QWidget* pWidget = new QWidget;
-	pWidget->setGeometry(300, 400, 500, 500);
-	QTextEdit* pEdit= new QTextEdit(pWidget);
-	pEdit->setStyleSheet("font-size:12px;font-weight:400;");
-	QString strText = QString("<a style =\"color:%2;font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;line-height:17px;\">%1</a><a style =\"color:%4;font-size:12px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;line-height:17px;\">%3</a>").arg("111:").arg(QString("#D3D531")).arg("nihao").arg("#90F4F4");
-	pEdit->append(strText);
-	pWidget->show();
-	//TestView();
-	//QtHelper::CreatePixmapList();
+	
+	
+	/*Emoji* emoji = new Emoji;
+	emoji->show();*/
+	IMWidget* widget = new IMWidget;
+	widget->show();
+
 	return a.exec();
+}
+
+void TestDateTime() {
+	long long startTime = 1588925074876/1000;
+	long long endTime = 1588925094876/1000;
+
+	time_t create_time(startTime);
+	QDateTime date;
+	date = QDateTime::fromTime_t(create_time);
+	QString strDate = date.toString("yyyy:MM:dd:hh:mm:ss");
+
+	QDateTime time = QDateTime::currentDateTime();
+	QString strTime = time.toString("yyyy:MM:dd:hh:mm:ss");
+	QDateTime time1 = QDateTime::fromTime_t(startTime);
+	QString strTime1 = time1.toString("yyyy:MM:dd:hh:mm:ss");
+	QDateTime time2 = QDateTime::fromTime_t(endTime);
+	QString strTime2 = time2.toString("yyyy:MM:dd:hh:mm:ss");
+	qint64 secsTo2 = time.secsTo(time1);
+	qint64 secsTo = time1.secsTo(time2);
 	
 }
 
+void TestZip() {
+	QString strFileZip = QString("D:/GitHub/hcz362329-QtUtility/Win32/Debug/angelcrown1000.zip");
+	WCHAR szFile[MAX_PATH] = { 0 };
+	strFileZip.toWCharArray(szFile);
+	HZIP hTarget = OpenZip(szFile, "");
+	if (hTarget != 0) {
+		ZIPENTRY* entry;
+		ZRESULT result = GetZipItem(hTarget, 0, entry);
+		if (result == 0) {
+			result = UnzipItem(hTarget, 0, entry->name);
+		}
+		CloseZip(hTarget);
+	}
+}
 
+void TestFuncPtr() {
+	long(*pFunc)(long* arrays, size_t) { find_maximum };
+	auto pFunc2{ find_maximum };
+	auto pFunc3{ find_maximum };
+	std::function<long(long*, size_t)> funcLong;
+
+	long arrays_long[10] = { 9,3,12,8,673,9,2,1,5,9 };
+	long max_value = pFunc(arrays_long, _countof(arrays_long));
+	long max_value2 = pFunc2(arrays_long, _countof(arrays_long));
+	long max_value3 = pFunc3(arrays_long, _countof(arrays_long));
+	funcLong = pFunc;
+	int max_value4 = funcLong(arrays_long, _countof(arrays_long));
+	qDebug() << "max_value:" << max_value;
+}
+void TestOfficialTip() {
+	OfficialTipWidget* widget = new OfficialTipWidget;
+	widget->setGeometry(300, 300, 212,120);
+	widget->SetTipType(OfficialTipWidget::TYPE_CLOSE);
+	widget->show();
+
+}
+void TestFlowLight() {
+	Mgr::GiftFlowLight* light = new Mgr::GiftFlowLight;
+	light->show();
+}
+void TestCss()
+{
+	QWidget* pWidget = new QWidget;
+	pWidget->setGeometry(500, 500, 300, 300);
+	QPushButton* pBtn = new QPushButton(pWidget);
+	pBtn->setGeometry(0, 10, 300, 40);
+	QString strStyle = QString("QProgressBar{color:rgba(253,88,63,1);}");
+	QProgressBar* progress = new QProgressBar(pWidget);
+	progress->setGeometry(0, 100, 300, 40);
+	progress->setRange(0, 100);
+	static int value = 0;
+	QTextEdit* pText = new QTextEdit(pWidget);
+	pText->setGeometry(0, 150, 300, 150);
+	QObject::connect(pBtn, &QPushButton::clicked, [&]() {
+		progress->setStyleSheet(pText->toPlainText());
+		if (value > 100) value = 0;
+		value += 5;
+		progress->setValue(value);
+
+	});
+	pWidget->show();
+}
 void CreatePixmap()
 {
 	QtHelper::GetPixmap1(60,22);
@@ -184,6 +303,11 @@ void TestRoundedWidget()
 	pRound->SetRoundedColor(533, 346, 7, 35, 36, 41);
 	pRound->move(600, 100);
 	pRound->show();
+}
+
+int _stdcall test_function(int value) {
+	qDebug() << "value:"<< value;
+	return 1;
 }
 
 void loadFont()

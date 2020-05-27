@@ -7,6 +7,8 @@
 #include <QVector>
 #include <QLinearGradient>
 #include <QDebug>
+#include <QFile>
+#include <QApplication>
 #include "qpainterex.h"
 struct STHSLV
 {
@@ -28,10 +30,13 @@ struct STHSLV
 		type=0;
 	}
 };
+static QMap<int, QPixmap> numToPixmap;
+static QMap<int, QPixmap> hitToPixmap;
 
 class QtHelper
 {
 public:
+	
 	static QImage GetGrayPixmap(const QString & strPath)
 	{
 		QImage image;
@@ -72,6 +77,97 @@ public:
 		painter.drawRect(QRect(0,0,w,h));
 
 		painter.end();
+		return pixmap;
+	}
+
+	static QPixmap GetPixmapByNum(int num) {
+		QMap<int, QPixmap>::iterator iter = numToPixmap.find(num);
+		QPixmap pixmap;
+		QString strNum = QString::number(num);
+		int count0 = strNum.count('0');
+		int count1 = strNum.count('1');
+		int count2 = strNum.count('2');
+		int count3 = strNum.count('3');
+		int count4 = strNum.count('4');
+		int count5 = strNum.count('5');
+		int count6 = strNum.count('6');
+		int count7 = strNum.count('7');
+		int count8 = strNum.count('8');
+		int count9 = strNum.count('9');
+
+		int w =count0 * 12 + count1 *6 + count2 * 11 + count3 * 11 + count4 * 12 + count5 *11 + count6 * 11 + count7 * 11 + count8 * 11 + count9 * 12;
+		pixmap = QPixmap(w, 16);
+		int xpos = 0;
+		if (iter == numToPixmap.end()&& num>0) {
+			pixmap.fill(Qt::transparent);
+			QPainter painter;
+			painter.begin(&pixmap);
+			painter.setRenderHint(QPainter::Antialiasing, true);
+			
+			for (int i = 0; i < strNum.length(); i++) {
+				QString strPixmap = QApplication::applicationDirPath() + "/num_%1.png";
+				strPixmap = strPixmap.arg(strNum.mid(i, 1));
+				if (QFile::exists(strPixmap)) {
+					QPixmap pixTmp = QPixmap(strPixmap);
+					painter.drawPixmap(xpos, 0, pixTmp);
+					xpos += pixTmp.width();
+				}
+			}
+			painter.end();
+			numToPixmap[num] = pixmap;
+			QString strPixmap2 = QApplication::applicationDirPath() + "/%1.png";
+			pixmap.save(strPixmap2.arg(strNum));
+		}
+		else {
+			pixmap = *iter;
+		}
+		return pixmap;
+	}
+	static QPixmap GetPixmapByHit(int num) {
+		QMap<int, QPixmap>::iterator iter = hitToPixmap.find(num);
+		QPixmap pixmap;
+		QString strNum = QString::number(num);
+		int count0 = strNum.count('0');
+		int count1 = strNum.count('1');
+		int count2 = strNum.count('2');
+		int count3 = strNum.count('3');
+		int count4 = strNum.count('4');
+		int count5 = strNum.count('5');
+		int count6 = strNum.count('6');
+		int count7 = strNum.count('7');
+		int count8 = strNum.count('8');
+		int count9 = strNum.count('9');
+
+		int w = 18 + count0 * 21 + count1 * 11 + count2 * 21 + count3 * 19 + count4 * 21 + count5 * 20 + count6 * 18 + count7 * 21 + count8 * 20 + count9 * 18;
+		pixmap = QPixmap(w, 28);
+		int xpos = 0;
+		if (iter == hitToPixmap.end() && num>0) {
+			pixmap.fill(Qt::transparent);
+			QPainter painter;
+			painter.begin(&pixmap);
+			painter.setRenderHint(QPainter::Antialiasing, true);
+			QString strPixmap0 = QApplication::applicationDirPath() + "/hit_x.png";
+			QPixmap pixmapTmp;
+			pixmapTmp.load(strPixmap0);
+			xpos += pixmapTmp.width();
+			painter.drawPixmap(0, 10, pixmapTmp);
+			for (int i = 0; i < strNum.length(); i++) {
+				QString strPixmap = QApplication::applicationDirPath() + "/hit_%1.png";
+				strPixmap = strPixmap.arg(strNum.mid(i, 1));
+				pixmapTmp = QPixmap(strPixmap);
+				if (QFile::exists(strPixmap)) {
+					painter.drawPixmap(xpos, 0, pixmapTmp);
+					xpos += pixmapTmp.width();
+				}
+			}
+			painter.end();
+			hitToPixmap[num] = pixmap;
+			QString strPixmap2 = QApplication::applicationDirPath() + "/%1.png";
+			pixmap.save(strPixmap2.arg(strNum));
+		}
+		else {
+			pixmap = *iter;
+		}
 		return pixmap;
 	}
 
