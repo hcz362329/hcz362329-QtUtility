@@ -2,6 +2,7 @@
 #define CHATLISTWIDGET_H
 #include <QWidget>
 #include <QLabel>
+#include <QListWidget>
 #include <QVBoxLayout>
 class ChatListWidget : public QWidget {
 	Q_OBJECT
@@ -18,5 +19,6 @@ protected:
 private:
 	QVBoxLayout* vLayer;
 	QLabel* pListCount;
+	QListWidget* listWidget;
 };
 #endif // !ChatListWidget_h

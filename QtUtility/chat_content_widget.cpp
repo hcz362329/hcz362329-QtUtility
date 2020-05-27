@@ -76,15 +76,10 @@ const QString strScroll = QString("QScrollBar:vertical{\
 							padding - top:9px;  \
 							padding - bottom:9px;\
 						}");
-std::vector<std::string> vecContent = {"11111111111111111111111111111112cvcxvcxvcx",
-"11111111111111111111111111111112cvcxvcxvc44444444444444444",
-"1111111111111111111111166666666666666666666666",
-"11111111111111111111111111111112cvcxvcxvcx7777777777777777777777777777777777777777777777777777777777777777777777",
-};
-std::vector<std::string> vecContent2 = {"2月24日 21:19",
-"你们已成为好友,快聊天吧",
-"你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你",
-"你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你"};
+std::vector<QString> vecContent = {QStringLiteral("2月24日 21:19"),
+QStringLiteral("你们已成为好友,快聊天吧"),
+QStringLiteral("你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你"),
+QStringLiteral("你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你")};
 ChatContentWidget::ChatContentWidget(QWidget* parent)
 	:QWidget(parent),
 	vMainLayer(nullptr),
@@ -138,6 +133,7 @@ void ChatContentWidget::Init() {
 	listWidget = new QListWidget(this);
 	listWidget->setAutoScroll(true);
 	listWidget->setStyleSheet(strListStye);
+	listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	QScrollBar* scroll = nullptr;
 	scroll = listWidget->verticalScrollBar();
 	if (scroll != nullptr) {
@@ -149,7 +145,7 @@ void ChatContentWidget::Init() {
 		ContentItemWidget::ItemType type =(ContentItemWidget::ItemType) (i % 4);
 		QVariant var;
 		MsgContent msg;
-		msg.content = vecContent[type];
+		msg.content = vecContent[type].toStdString();
 		var.setValue(msg);
 		itemWidget = new ContentItemWidget(listWidget, type, item, var);
 		
@@ -216,4 +212,5 @@ void ChatContentWidget::OnSendBtnClicked() {
 	item->setSizeHint(size);*/
 	listWidget->setItemWidget(item, itemWidget);
 	contentEdit->clear();
+	listWidget->scrollToBottom();
 }

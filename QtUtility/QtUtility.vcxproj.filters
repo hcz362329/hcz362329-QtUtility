@@ -755,6 +755,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_content_item_widget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="user_item_widget.cpp">
+      <Filter>IM</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_user_item_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_user_item_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="myclass.ui">
@@ -983,6 +992,9 @@
       <Filter>IM</Filter>
     </CustomBuild>
     <CustomBuild Include="content_item_widget.h">
+      <Filter>IM</Filter>
+    </CustomBuild>
+    <CustomBuild Include="user_item_widget.h">
       <Filter>IM</Filter>
     </CustomBuild>
   </ItemGroup>

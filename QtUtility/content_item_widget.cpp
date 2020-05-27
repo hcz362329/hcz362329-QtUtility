@@ -53,7 +53,7 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		lMainLayer->setSpacing(0);
 		lMainLayer->setContentsMargins(0, 0, 0, 0);
 		pDate = new QLabel(this);
-		pDate->setText(QString::fromLocal8Bit(msg.content.data()));
+		pDate->setText(QString::fromStdString(msg.content));
 		pDate->setFixedHeight(16);
 		pDate->setStyleSheet(styleDate);
 		pDate->setAlignment(Qt::AlignCenter);
@@ -70,7 +70,7 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		lMainLayer->setSpacing(0);
 		lMainLayer->setContentsMargins(0, 0, 0, 0);
 		pBeFriend = new QLabel(this);
-		pBeFriend->setText(QString::fromLocal8Bit(msg.content.data()));
+		pBeFriend->setText(QString::fromStdString(msg.content));
 		pBeFriend->setFixedSize(263,24);
 		pBeFriend->setStyleSheet(styleFriend);
 		pBeFriend->setAlignment(Qt::AlignCenter);
@@ -93,7 +93,7 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		pStatus->setPixmap(pixSending.scaled(pStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 		pContent = new QTextEdit(this);
 		
-		pContent->setText(QString::fromStdString(msg.content.data()));
+		pContent->setText(QString::fromStdString(msg.content));
 		pContent->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 		pContent->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 		pContent->setEnabled(false);
@@ -104,7 +104,7 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 			QTextBlock block = pDoc->lastBlock();
 			QTextCursor tc(block);
 			QTextBlockFormat fmt = block.blockFormat();
-			fmt.setLineHeight(10, QTextBlockFormat::LineDistanceHeight);
+			fmt.setLineHeight(8, QTextBlockFormat::LineDistanceHeight);
 			tc.setBlockFormat(fmt);
 		}
 		pContent->setStyleSheet(styleContent);
@@ -155,13 +155,14 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		setLayout(vMsgLayer);
 		int w = pContentLabel->width();
 		int h = pContentLabel->height();
-		int w2 = pContentLabel->fontMetrics().width(msg.content.data());
+		int w2 = pContentLabel->fontMetrics().width(QString::fromStdString(msg.content));
 		int line_width = this->width() - pHead->width() - pStatus->width() - 120;
 		int h2 = ((w2 - 1) / line_width + 1) * 20;
 		
 		h2 = h2 < 32 ? 32 : h2;
 		pContentLabel->hide();
 		w2 = w2 > line_width ? line_width : w2;
+		w2 = w2 < 60 ? 60 : w2;
 		pContent->setFixedSize(w2,h2);
 		this->setFixedHeight(h2 +16);
 	}
