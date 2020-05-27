@@ -92,14 +92,30 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		pStatus->setFixedSize(16, 16);
 		pStatus->setPixmap(pixSending.scaled(pStatus->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 		pContent = new QTextEdit(this);
+		
 		pContent->setText(QString::fromStdString(msg.content.data()));
 		pContent->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		pContent->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 		pContent->setEnabled(false);
-		QFont font;
-		font.setPixelSize(12);
-		pContent->setFont(font);
-		
+
+		QTextDocument *pDoc = nullptr;
+		pDoc = pContent->document();
+		if (pDoc != nullptr) {
+			QTextBlock block = pDoc->lastBlock();
+			QTextCursor tc(block);
+			QTextBlockFormat fmt = block.blockFormat();
+			fmt.setLineHeight(10, QTextBlockFormat::LineDistanceHeight);
+			tc.setBlockFormat(fmt);
+		}
 		pContent->setStyleSheet(styleContent);
+
+		pContentLabel = new QLabel(this);
+		pContentLabel->setWordWrap(true);
+		pContentLabel->setStyleSheet(styleContent);
+		pContentLabel->setFixedHeight(20);
+		pContentLabel->setText(QString::fromStdString(msg.content.data()));
+		//QString strText = QStringLiteral("大家好我是渣渣灰我今年洗脚水大家好我是渣渣灰我今年洗脚水大家好我是渣渣灰我今年洗脚水大家好我是渣渣灰我今年洗脚水大家好我是渣渣灰我今年洗脚水大家好我是渣渣灰我今年洗脚水大家好我是渣渣灰我今年洗脚水");
+		//pContentLabel->setText(strText);
 		lMainLayer->addSpacing(16);
 		QVBoxLayout* headLayout = new QVBoxLayout;
 		headLayout->setSpacing(0);
@@ -116,6 +132,7 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		if (type == ContentItemWidget::MsgLeft) {
 			lMainLayer->addLayout(headLayout);
 			lMainLayer->addSpacing(10);
+			lMainLayer->addWidget(pContentLabel, 0);
 			lMainLayer->addWidget(pContent, 0);
 			lMainLayer->addSpacing(10);
 			lMainLayer->addLayout(statusLayout);
@@ -128,38 +145,25 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 			lMainLayer->addStretch();
 			lMainLayer->addLayout(statusLayout);
 			lMainLayer->addSpacing(10);
+			lMainLayer->addWidget(pContentLabel, 0);
 			lMainLayer->addWidget(pContent, 1);
 			lMainLayer->addSpacing(10);
 			lMainLayer->addLayout(headLayout);
 
 		}
-		int w = this->width();
-		int w0 = pContent->fontMetrics().width(pContent->toPlainText());
-		QRect rect = pContent->fontMetrics().boundingRect(QRect(0, 0, 0, 0), Qt::AlignLeft, pContent->toPlainText());
-		qDebug() << "rect:" << rect;
-		int w2 = rect.width();
-		int w3 = w - 180;
-		if (w2 > w3) {
-			int nLine = w2 / w3 ;
-			int height = nLine * 24;
-			pContent->resize(w3, height);
-			this->resize(w, height + 16);
-		}
-		else {
-			pContent->setFixedSize(w2, 32);
-			setFixedHeight(48);
-		}
-		QTextDocument *pDoc = nullptr;
-		pDoc = pContent->document();
-		if (pDoc != nullptr) {
-			QTextBlock block = pDoc->lastBlock();
-			QTextCursor tc(block);
-			QTextBlockFormat fmt = block.blockFormat();
-			fmt.setLineHeight(10, QTextBlockFormat::LineDistanceHeight);
-			tc.setBlockFormat(fmt);
-		}
 		vMsgLayer->addLayout(lMainLayer);
 		setLayout(vMsgLayer);
+		int w = pContentLabel->width();
+		int h = pContentLabel->height();
+		int w2 = pContentLabel->fontMetrics().width(msg.content.data());
+		int line_width = this->width() - pHead->width() - pStatus->width() - 120;
+		int h2 = ((w2 - 1) / line_width + 1) * 20;
+		
+		h2 = h2 < 32 ? 32 : h2;
+		pContentLabel->hide();
+		w2 = w2 > line_width ? line_width : w2;
+		pContent->setFixedSize(w2,h2);
+		this->setFixedHeight(h2 +16);
 	}
 		break;
 	default:

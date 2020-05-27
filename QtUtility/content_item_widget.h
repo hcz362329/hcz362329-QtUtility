@@ -37,6 +37,7 @@ private:
 	QLabel* pDate;
 	QLabel* pHead;
 	QLabel* pStatus;
+	QLabel* pContentLabel;
 	QTextEdit* pContent;
 	QPixmap pixDefault;
 	QPixmap pixSending;

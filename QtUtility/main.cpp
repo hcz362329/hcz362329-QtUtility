@@ -109,6 +109,7 @@ int main(int argc, char *argv[])
 	
 	/*Emoji* emoji = new Emoji;
 	emoji->show();*/
+	
 	IMWidget* widget = new IMWidget;
 	widget->show();
 
