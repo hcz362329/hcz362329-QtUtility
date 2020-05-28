@@ -23,6 +23,12 @@ const QString styleContent = QString("padding:4px 4px 4px 4px;border-radius:1px 
 	"font-weight:400;"
 	"color:rgba(255, 255, 255, 1);"
 	"line-height:17px;");
+const QString styleReSend = QString("padding:0 0px;margin:0 0px;background:transparent;");
+const QString reSendText = QString("<span style='line-height:17px;"
+	"color:rgba(255,255,255,0.6);"
+	"font-size:12px;font-weight:400;'>%1</span>"
+	"<span style='line-height:17px; color:#FF1271;"
+	"font-size:12px;font-weight:400;'>%2</span>").arg(QStringLiteral("发送失败,")).arg(QStringLiteral("重新发送"));
 ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetItem* item,const QVariant& var)
 	:QWidget(parent),
 	lMainLayer(nullptr),
@@ -32,7 +38,8 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 	pHead(nullptr),
 	pStatus(nullptr),
 	pContent(nullptr),
-	item(nullptr){
+	item(nullptr),
+	reSend(nullptr){
 	this->item = item;
 	setMinimumWidth(364);
 	pixDefault.load(":/res/Resources/images/head.png");
@@ -165,6 +172,22 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		w2 = w2 < 60 ? 60 : w2;
 		pContent->setFixedSize(w2,h2);
 		this->setFixedHeight(h2 +16);
+	}
+		break;
+	case ReSend: {
+		lMainLayer = new QHBoxLayout();
+		lMainLayer->setSpacing(0);
+		lMainLayer->setContentsMargins(0, 0, 0, 0);
+		reSend = new QLabel(this);
+		reSend->setFixedHeight(17);
+		reSend->setStyleSheet(styleReSend);
+		reSend->setText(reSendText);
+		lMainLayer->addStretch();
+		lMainLayer->addWidget(reSend);
+		lMainLayer->addStretch();
+		vMsgLayer->addLayout(lMainLayer);
+		setLayout(vMsgLayer);
+		this->setFixedHeight(33);
 	}
 		break;
 	default:

@@ -79,7 +79,8 @@ const QString strScroll = QString("QScrollBar:vertical{\
 std::vector<QString> vecContent = {QStringLiteral("2月24日 21:19"),
 QStringLiteral("你们已成为好友,快聊天吧"),
 QStringLiteral("你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你"),
-QStringLiteral("你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你")};
+QStringLiteral("你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你你好，很高兴认识你。你好，很高兴认识你"),
+QStringLiteral("")};
 ChatContentWidget::ChatContentWidget(QWidget* parent)
 	:QWidget(parent),
 	vMainLayer(nullptr),
@@ -143,7 +144,7 @@ void ChatContentWidget::Init() {
 	for (int i = 0; i < 100; i++) {
 		QListWidgetItem* item = new QListWidgetItem(listWidget);
 		ContentItemWidget* itemWidget = nullptr;
-		ContentItemWidget::ItemType type =(ContentItemWidget::ItemType) (i % 4);
+		ContentItemWidget::ItemType type =(ContentItemWidget::ItemType) (i % 5);
 		QVariant var;
 		MsgContent msg;
 		msg.content = vecContent[type].toStdString();

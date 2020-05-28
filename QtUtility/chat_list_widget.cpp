@@ -102,7 +102,7 @@ void ChatListWidget::Init() {
 	if (scroll != nullptr) {
 		scroll->setStyleSheet(scrollBarStyle2);
 	}
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 7; i++) {
 		QListWidgetItem* item = new QListWidgetItem(listWidget);
 		UserItemWidget* itemWidget = nullptr;
 		itemWidget = new UserItemWidget(listWidget);
@@ -114,11 +114,6 @@ void ChatListWidget::Init() {
 		item->setSizeHint(size);
 		listWidget->setItemWidget(item, itemWidget);
 	}
-
-	/*scroll = listWidget->verticalScrollBar();
-	if (scroll != nullptr) {
-	scroll->setStyleSheet(scrollBarStyle);
-	}*/
 	vLayer->addWidget(listWidget);
 	vLayer->addSpacing(10);
 }

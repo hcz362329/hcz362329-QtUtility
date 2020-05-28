@@ -24,7 +24,8 @@ public:
 		Date,
 		BeFriend,
 		MsgLeft,
-		MsgRight
+		MsgRight,
+		ReSend,
 	};
 	ContentItemWidget(QWidget* parent, ItemType type, QListWidgetItem* item, const QVariant& var = QVariant());
 	~ContentItemWidget();
@@ -38,6 +39,7 @@ private:
 	QLabel* pHead;
 	QLabel* pStatus;
 	QLabel* pContentLabel;
+	QLabel* reSend;
 	QTextEdit* pContent;
 	QPixmap pixDefault;
 	QPixmap pixSending;
