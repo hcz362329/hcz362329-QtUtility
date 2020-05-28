@@ -7,6 +7,7 @@ public:
 	UserItemWidget(QWidget* parent = nullptr);
 	~UserItemWidget();
 	void Init();
+	void SetOfficial(bool official);
 	UserItemWidget(UserItemWidget&) = delete;
 	UserItemWidget& operator=(UserItemWidget&) = delete;
 private:
@@ -17,5 +18,6 @@ private:
 	QLabel* pWeekDay;
 	QLabel* pSign;
 	QLabel* redDot;
+	QLabel* pOfficial;
 };
 #endif // !user_item_widget_h

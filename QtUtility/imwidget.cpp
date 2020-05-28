@@ -3,13 +3,13 @@
 #include "chat_content_widget.h"
 #include <QMessageBox>
 #include <QMouseEvent>
-const QString strStyle = QString("\
-							QLabel#TopBg{background:rgba(38,40,46,1);border-radius:7px; }\
-							QLabel#MsgTitle{padding:0px;padding-left:0px;padding-right:0px;background:transparent;color:white;font-size:16px;font-weight:500;line-height:22px;}\
-							QDialog#IMWidgetObj{background:rgba(35,36,42,1);border-radius:7px;}\
-							QWidget#ChatList{background:blue;border-radius:0px;}\
-							QWidget#ChatContent{background:green;}\
-							QTextEdit{background:white;color:black;}");
+const QString strStyle = QString("QLabel{background:transparent;color:white;}"
+							"QLabel#TopBg{background:rgba(38,40,46,1);border-radius:7px; }"
+							"QLabel#MsgTitle{padding:0px;padding-left:0px;padding-right:0px;background:transparent;color:white;font-size:16px;font-weight:500;line-height:22px;}"
+							"QDialog#IMWidgetObj{background:rgba(35,36,42,1);border-radius:7px;}"
+							"QWidget#ChatList{background:blue;border-radius:0px;}"
+							"QWidget#ChatContent{background:green;}"
+							"QTextEdit{background:white;color:black;}");
 #define CHATLIST_WIDTH 260
 IMWidget::IMWidget(QWidget* parent)
 	:QDialog(parent),

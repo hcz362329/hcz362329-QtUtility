@@ -15,7 +15,7 @@ const QString styleCount = QString("padding:0px;padding-left:0px;padding-right:0
 								line-height:20px;");
 const QString scrollBarStyle2 = QString("QScrollBar:vertical\
 									{\
-										width: 8px;\
+										width: 5px;\
 										min-height: 60px;\
 										margin: 0px;\
 										padding: 0px;\
@@ -23,11 +23,11 @@ const QString scrollBarStyle2 = QString("QScrollBar:vertical\
 									}\
 									QScrollBar::handle:vertical\
 									{\
-										width: 8px;\
+										width: 5px;\
 										min-height: 20px;\
 										border: 0px;\
 										border-radius: 2px;\
-										background-color: rgb(89,89,89);\
+										background-color: rgb(65,66,70);\
 									}\
 									QScrollBar::sub-line:vertical\
 									{\
@@ -53,17 +53,10 @@ const QString scrollBarStyle2 = QString("QScrollBar:vertical\
 
 QString strListStye2 = QString("QListWidget{padding:0px;padding-top:0px; background:rgba(24,24,26,1);"
 	"border-radius:2px;}"
-	"QListWidget::Item{padding:0 0px;background:rgba(24,24,26,1);}"
+	"QListWidget::Item{padding:0 0px;background:rgba(46,47,51,1);}"
 	"QListWidget::Item:hover{background:rgba(24,24,26,1);padding:0 0px;}"
-	"QListWidget::item:selected{background:rgba(24,24,26,1);padding:0 0px;}"
+	"QListWidget::item:selected{background:rgba(24,24,26,1);padding:0 0px;border:1px solid red;}"
 	"QListWidget::item:selected:!active{background:rgba(24,24,26,1);padding:0 0px;}");
-const QString strScroll2 = QString("QScrollBar:vertical{\
-						width:8px;\
-						background:rgba(0,0,0,0 % );\
-						margin:0px,0px,0px,0px;\
-							padding - top:9px;  \
-							padding - bottom:9px;\
-						}");
 ChatListWidget::ChatListWidget(QWidget* parent)
 	:QWidget(parent),
 	vLayer(nullptr){
@@ -102,7 +95,8 @@ void ChatListWidget::Init() {
 	listWidget = new QListWidget(this);
 	listWidget->setAutoScroll(true);
 	listWidget->setStyleSheet(strListStye2);
-	listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+	listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
+	listWidget->setFocusPolicy(Qt::NoFocus);
 	QScrollBar* scroll = nullptr;
 	scroll = listWidget->verticalScrollBar();
 	if (scroll != nullptr) {
@@ -112,7 +106,9 @@ void ChatListWidget::Init() {
 		QListWidgetItem* item = new QListWidgetItem(listWidget);
 		UserItemWidget* itemWidget = nullptr;
 		itemWidget = new UserItemWidget(listWidget);
-
+		if (i % 5 == 0) {
+			itemWidget->SetOfficial(true);
+		}
 		listWidget->addItem(item);
 		QSize size = itemWidget->size();
 		item->setSizeHint(size);
@@ -124,6 +120,7 @@ void ChatListWidget::Init() {
 	scroll->setStyleSheet(scrollBarStyle);
 	}*/
 	vLayer->addWidget(listWidget);
+	vLayer->addSpacing(10);
 }
 
 void ChatListWidget::paintEvent(QPaintEvent* event) {

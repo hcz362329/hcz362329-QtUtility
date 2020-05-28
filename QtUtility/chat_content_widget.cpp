@@ -27,7 +27,7 @@ const QString styleEdit = QString("background:rgba(216,216,216,0.34);border-radi
 const QString styleList = QString("background:rgba(24,24,26,1);border:1px solid rgba(24,24,26,1);");
 const QString scrollBarStyle = QString("QScrollBar:vertical\
 									{\
-										width: 8px;\
+										width: 5px;\
 										min-height: 60px;\
 										margin: 0px;\
 										padding: 0px;\
@@ -35,11 +35,11 @@ const QString scrollBarStyle = QString("QScrollBar:vertical\
 									}\
 									QScrollBar::handle:vertical\
 									{\
-										width: 8px;\
+										width: 5px;\
 										min-height: 20px;\
 										border: 0px;\
 										border-radius: 2px;\
-										background-color: rgb(89,89,89);\
+										background-color: rgb(65,66,70);\
 									}\
 									QScrollBar::sub-line:vertical\
 									{\
@@ -134,6 +134,7 @@ void ChatContentWidget::Init() {
 	listWidget->setAutoScroll(true);
 	listWidget->setStyleSheet(strListStye);
 	listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+	listWidget->setFocusPolicy(Qt::NoFocus);
 	QScrollBar* scroll = nullptr;
 	scroll = listWidget->verticalScrollBar();
 	if (scroll != nullptr) {
