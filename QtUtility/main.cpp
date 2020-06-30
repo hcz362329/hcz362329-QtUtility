@@ -40,12 +40,21 @@
 #include <iostream>
 #include <map>
 #include <time.h>
+#include <codecvt>
+#include <string>
+#include <locale>
+
+#include <iostream>
+#include <string>
+#include <cassert>
+
 #include "zip/unzip.h"
 #include "Circle.h"
 #include "StyleSheetWidget.h"
 #include "QtApp.h"
 #include "emoji.h"
 #include "imwidget.h"
+#include "vote_tool_widget.h"
 //#include<QtPlugin>
 //Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)
 //Q_IMPORT_PLUGIN(QICOPlugin)
@@ -75,6 +84,7 @@ void TestCss();
 void TestOfficialTip();
 void TestZip();
 void TestFuncPtr();
+void TestVote();
 struct T {
 	bool isHighFrequency;
 	int orderBig;
@@ -106,14 +116,14 @@ int main(int argc, char *argv[])
 	a.setQuitOnLastWindowClosed(true);
 	QDir::setCurrent(QApplication::instance()->applicationDirPath());
 	
+	TestVote();
 	
-	/*Emoji* emoji = new Emoji;
-	emoji->show();*/
-	
-	IMWidget* widget = new IMWidget;
-	widget->show();
-
 	return a.exec();
+}
+
+void TestVote() {
+	VoteToolWidget* vote = new VoteToolWidget;
+	vote->show();
 }
 
 void TestDateTime() {

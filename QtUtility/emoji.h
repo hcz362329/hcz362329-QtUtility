@@ -17,6 +17,7 @@ private:
 	QPushButton* pBtn;
 	QLabel* pEmoji;
 	QTextEdit* pEmojiText;
+	QTextEdit* pText;
 	QPushButton* btn;
 };
 

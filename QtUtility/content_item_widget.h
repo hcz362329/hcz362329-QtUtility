@@ -30,6 +30,7 @@ public:
 	ContentItemWidget(QWidget* parent, ItemType type, QListWidgetItem* item, const QVariant& var = QVariant());
 	~ContentItemWidget();
 	GET_SET_DEFINE(itemType, ItemType, ItemType);
+	void HideStatus();
 protected:
 	virtual void resizeEvent(QResizeEvent* event);
 private:

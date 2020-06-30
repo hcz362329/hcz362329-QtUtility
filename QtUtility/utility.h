@@ -15,6 +15,9 @@ namespace common_cz
 
 	std::string UnicodeToAscii( const std::wstring& in_str );
 
+	std::string UTF8_GBK(const std::string& src, const UINT cp);
+	std::wstring MultiToWideStr(const std::string & gbkString, UINT  codePage);
+
 	bool GetProcessFolderPath(std::wstring* folder_path);
 	bool IsDirectoryExist(const std::string& directory);
 	bool IsDirectoryExist(const std::wstring& directory);

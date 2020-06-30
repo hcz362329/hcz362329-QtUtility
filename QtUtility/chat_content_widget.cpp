@@ -141,7 +141,7 @@ void ChatContentWidget::Init() {
 	if (scroll != nullptr) {
 		scroll->setStyleSheet(scrollBarStyle);
 	}
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 10; i++) {
 		QListWidgetItem* item = new QListWidgetItem(listWidget);
 		ContentItemWidget* itemWidget = nullptr;
 		ContentItemWidget::ItemType type =(ContentItemWidget::ItemType) (i % 5);
@@ -193,6 +193,13 @@ void ChatContentWidget::paintEvent(QPaintEvent* event) {
 }
 
 void ChatContentWidget::OnSendBtnClicked() {
+	int count = listWidget->count();
+	for (int i = 0; i < count; i++) {
+		QListWidgetItem* item = listWidget->item(i);
+		ContentItemWidget* item2 = dynamic_cast<ContentItemWidget*>(listWidget->itemWidget(item));
+		item2->HideStatus();
+	}
+
 	QString strText = contentEdit->toPlainText();
 	QListWidgetItem* item = new QListWidgetItem(listWidget);
 	ContentItemWidget* itemWidget = nullptr;
@@ -215,4 +222,5 @@ void ChatContentWidget::OnSendBtnClicked() {
 	listWidget->setItemWidget(item, itemWidget);
 	contentEdit->clear();
 	listWidget->scrollToBottom();
+	
 }

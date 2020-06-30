@@ -90,6 +90,9 @@
     <Filter Include="IM">
       <UniqueIdentifier>{4868a758-b3e8-4a96-8e3b-ec55bf790281}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Vote">
+      <UniqueIdentifier>{2d2e931e-5fca-4499-99f4-b3383f11e9eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -764,6 +767,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_user_item_widget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="UnicodeConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vote_tool_widget.cpp">
+      <Filter>Vote</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_vote_tool_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_vote_tool_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="myclass.ui">
@@ -997,6 +1012,9 @@
     <CustomBuild Include="user_item_widget.h">
       <Filter>IM</Filter>
     </CustomBuild>
+    <CustomBuild Include="vote_tool_widget.h">
+      <Filter>Vote</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_myclass.h">
@@ -1088,6 +1106,9 @@
     </ClInclude>
     <ClInclude Include="zip\zip.h">
       <Filter>zip</Filter>
+    </ClInclude>
+    <ClInclude Include="UnicodeConverter.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

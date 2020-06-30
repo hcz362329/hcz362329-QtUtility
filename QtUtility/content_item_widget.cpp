@@ -164,9 +164,12 @@ ContentItemWidget::ContentItemWidget(QWidget* parent,ItemType type, QListWidgetI
 		int h = pContentLabel->height();
 		int w2 = pContentLabel->fontMetrics().width(QString::fromStdString(msg.content));
 		int line_width = this->width() - pHead->width() - pStatus->width() - 120;
-		int h2 = ((w2 - 1) / line_width + 1) * 20;
-		
+		int line = (w2 - 1) / line_width + 1;
+		int h2 = line * 12;
+		h2 = h2 + 8 + (line - 1) * 7;
 		h2 = h2 < 32 ? 32 : h2;
+		if (h2 == 39)
+			h2 += 10;
 		pContentLabel->hide();
 		w2 = w2 > line_width ? line_width : w2;
 		w2 = w2 < 60 ? 60 : w2;
@@ -202,6 +205,11 @@ ContentItemWidget::~ContentItemWidget() {
 
 }
 
+void ContentItemWidget::HideStatus() {
+	if (pStatus != nullptr) {
+		pStatus->hide();
+	}
+}
 
 void ContentItemWidget::resizeEvent(QResizeEvent* event) {
 	qDebug()<<"old size"<<event->oldSize();

@@ -88,11 +88,62 @@ namespace common_cz
 		va_start(ap, fmt);
 		const size_t SIZE = 4096;     
 		char buffer[SIZE] = { 0 };
-		///vsnprintf(buffer, SIZE, fmt, ap);
-		///int nSize = vsnprintf_s( buffer, sizeof(buffer), _TRUNCATE, fmt, ap);
 		vsnprintf_s( buffer, SIZE, _TRUNCATE, fmt, ap);
 		va_end(ap);
 
 		return std::string(buffer); 
 	} 
+	/*
+#if _MSC_VER >= 1900
+	std::u32string to_utf32(std::string utf8_string) {
+		std::wstring_convert<std::codecvt_utf8<unsigned int>, unsigned int> convert;
+		auto p = reinterpret_cast<const char*>(utf8_string.data());
+		auto str = convert.from_bytes(p, p + utf8_string.size());
+		std::u32string str32(str.begin(), str.end());
+		return str32;
+	}
+
+	std::wstring to_utf16(std::string utf8_string) {
+		return std::wstring_convert< std::codecvt_utf8<wchar_t>, wchar_t >{}.from_bytes(utf8_string);
+	}
+#else
+	std::u32string to_utf32(std::string str) {
+		return std::wstring_convert< std::codecvt_utf8<unsigned int>, unsigned int >{}.from_bytes(str);
+	}
+	std::wstring to_utf16(std::string utf8_string) {
+		return std::wstring_convert< std::codecvt_utf8<wchar_t>, wchar_t >{}.from_bytes(str);
+	}
+#endif
+*/
+	std::string UTF8_GBK(const std::string& src, const UINT cp) {
+		//multi->wide->multi
+		UINT codePage1 = (cp == CP_ACP ? CP_UTF8 : CP_ACP);
+		UINT codePage2 = cp;
+		const int len = static_cast<int>(src.length());
+		std::wstring enc;
+		const int req = MultiByteToWideChar(codePage1, 0, src.c_str(), len, NULL, 0);
+		if (req > 0) {
+			enc.resize(static_cast<size_t>(req));
+			MultiByteToWideChar(codePage1, 0, src.c_str(), len, &enc[0], req);
+		}
+		
+		const int req2 = WideCharToMultiByte(codePage2, 0, enc.c_str(),-1,0,0,0,0);
+		std::string dec;
+		if (req2 > 0) {
+			dec.resize(static_cast<size_t>(req2));
+			WideCharToMultiByte(codePage2, 0, enc.c_str(), -1, &dec[0], req2, NULL, NULL);
+		}
+		return dec;
+	}
+
+	std::wstring MultiToWideStr(const std::string & gbkString, UINT  codePage) {
+		const int len = static_cast<int>(gbkString.length());
+		std::wstring enc;
+		const int req = MultiByteToWideChar(codePage, 0, gbkString.c_str(), -1, NULL, 0);
+		if (req > 0) {
+			enc.resize(static_cast<size_t>(req));
+			MultiByteToWideChar(codePage, 0, gbkString.c_str(), -1, &enc[0], req);
+		}
+		return enc;
+	}
 }

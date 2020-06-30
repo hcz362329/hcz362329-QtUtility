@@ -95,14 +95,14 @@ void ChatListWidget::Init() {
 	listWidget = new QListWidget(this);
 	listWidget->setAutoScroll(true);
 	listWidget->setStyleSheet(strListStye2);
-	listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerItem);
+	listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	listWidget->setFocusPolicy(Qt::NoFocus);
 	QScrollBar* scroll = nullptr;
 	scroll = listWidget->verticalScrollBar();
 	if (scroll != nullptr) {
 		scroll->setStyleSheet(scrollBarStyle2);
 	}
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 100; i++) {
 		QListWidgetItem* item = new QListWidgetItem(listWidget);
 		UserItemWidget* itemWidget = nullptr;
 		itemWidget = new UserItemWidget(listWidget);
