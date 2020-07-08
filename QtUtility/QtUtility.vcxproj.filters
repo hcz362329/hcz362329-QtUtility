@@ -93,11 +93,17 @@
     <Filter Include="Vote">
       <UniqueIdentifier>{2d2e931e-5fca-4499-99f4-b3383f11e9eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{7562763e-f284-4578-b281-f6e760c9be31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dump">
+      <UniqueIdentifier>{f5dbfcb8-9bfc-40b8-b010-eb937a57efa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dump\dump-obs">
+      <UniqueIdentifier>{9a0e36c9-ec39-4291-9306-737e0e195b6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_myclass.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -779,6 +785,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_vote_tool_widget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="minidump.cpp">
+      <Filter>dump</Filter>
+    </ClCompile>
+    <ClCompile Include="dump.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="main-widget.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="logic.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="myclass.ui">
@@ -1109,6 +1127,9 @@
     </ClInclude>
     <ClInclude Include="UnicodeConverter.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="minidump.h">
+      <Filter>dump</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

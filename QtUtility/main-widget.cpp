@@ -110,12 +110,107 @@ long find_maximum(long* array, size_t size) {
 int _stdcall test_function(int);
 void TestDateTime();
 
+#include <thread>
+#include "minidump.h"
+void func1() {
+	const int iNum = 6;
+	srand((unsigned)time(NULL));
+	int iRandom = rand() % iNum;
+
+	switch (iRandom)
+	{
+	case 0:
+	{
+		int* p = NULL;
+		*p = 5;
+	}
+	break;
+	case 1:
+	{
+		int j = 0;
+		int i = 5 / j;
+	}
+	break;
+	case 2:
+	{
+		int* p = NULL;
+		*p = 5;
+	}
+	break;
+	case 3:
+	{
+		int* p = NULL;
+		*p = 5;
+	}
+	break;
+	case 4:
+	{
+		int* p = NULL;
+		*p = 5;
+	}
+	break;
+	case 5:
+	{
+		int* p = NULL;
+		*p = 5;
+	}
+	break;
+	}
+}
+
+void func2() {
+	int n = 100;
+	do {
+		char * p;
+		p = new char;
+		delete  p;
+		delete p;
+	} while (--n);
+	
+}
+
+void func3() {
+	int n = 100;
+	do {
+		char * p;
+		p = new char[100];
+		delete[] p;
+	} while (--n);
+
+}
+
 int main(int argc, char *argv[])
 {
 	QtUtilityApp a(argc, argv);
 	a.setQuitOnLastWindowClosed(true);
 	QDir::setCurrent(QApplication::instance()->applicationDirPath());
-	
+	QPixmap pixmap;
+	bool bLoad = pixmap.load("./timg.jpg");
+	QImage image;
+	bLoad = image.load("./timg.jpg");
+	QPixmap pixmap2;
+	pixmap2 = QPixmap::fromImage(image);
+	TestVote();
+
+	MiniDump::EnableAutoDump(true);
+	std::thread th(func3);
+	th.detach();
+	std::thread th2(func2);
+	th2.detach();
+	return a.exec();
+}
+
+int main0(int argc, char *argv[])
+{
+	QtUtilityApp a(argc, argv);
+	a.setQuitOnLastWindowClosed(true);
+	QDir::setCurrent(QApplication::instance()->applicationDirPath());
+	QPixmap pixmap;
+	bool bLoad = pixmap.load("./timg.jpg");
+	QImage image;
+	bLoad = image.load("./timg.jpg");
+	QPixmap pixmap2;
+	pixmap2 = QPixmap::fromImage(image);
 	TestVote();
 	
 	return a.exec();
